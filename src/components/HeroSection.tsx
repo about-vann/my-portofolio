@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
-import { Check, Github, MapPin, FileText, Pause, Play, Volume2 } from 'lucide-react';
+import { Check, Github, MapPin, FileText, Pause, Play } from 'lucide-react';
 import { ThemeAccent, Language } from '../types';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import musicUrl from '../assets/audio/AUD-20260724-WA0417.mp3';
@@ -48,10 +48,8 @@ export const HeroSection: React.FC<HeroProps> = ({ lang, onDownloadCv }) => {
             <div className="flex flex-wrap items-center gap-2.5 pt-1 text-xs text-zinc-400">
               <div className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5 text-zinc-500" /><span>{PERSONAL_INFO.location}</span></div>
               <span className="text-zinc-700 hidden sm:inline">•</span>
-              <button type="button" onClick={toggleAudio} className={`group inline-flex items-center gap-2 text-[11px] font-medium px-2.5 py-1.5 rounded-lg border transition-all cursor-pointer select-none active:scale-95 ${playing ? 'bg-cyan-400/10 border-cyan-400/20 text-cyan-300' : 'bg-white/[0.04] border-white/[0.08] text-zinc-400 hover:text-zinc-200 hover:bg-white/[0.07]'}`} aria-label={id ? 'Putar atau jeda audio' : 'Play or pause audio'}>
-                <span className={`w-5 h-5 rounded-md flex items-center justify-center ${playing ? 'bg-cyan-400/15' : 'bg-white/[0.06]'}`}>{playing ? <Volume2 className="w-3 h-3 text-cyan-400" /> : <Play className="w-3 h-3 fill-current text-zinc-300" />}</span>
-                <span>{playing ? (id ? 'Sedang diputar' : 'Playing') : (id ? 'Putar audio' : 'Play audio')}</span>
-                {playing && <span className="flex items-end gap-0.5 h-3 ml-0.5" aria-hidden="true"><span className="w-0.5 h-1.5 bg-cyan-400 rounded-full eq-bar-1" /><span className="w-0.5 h-2.5 bg-cyan-400 rounded-full eq-bar-2" /><span className="w-0.5 h-2 bg-cyan-400 rounded-full eq-bar-3" /></span>}
+              <button type="button" onClick={toggleAudio} className={`inline-flex items-center justify-center w-7 h-7 rounded-lg border transition-all cursor-pointer active:scale-95 ${playing ? 'bg-cyan-400/10 border-cyan-400/20' : 'bg-white/[0.04] border-white/[0.08] hover:bg-white/[0.08]'}`} aria-label={playing ? (id ? 'Jeda audio' : 'Pause audio') : (id ? 'Putar audio' : 'Play audio')} title={playing ? (id ? 'Jeda audio' : 'Pause audio') : (id ? 'Putar audio' : 'Play audio')}>
+                {playing ? <Pause className="w-3 h-3 text-cyan-400" /> : <Play className="w-3 h-3 text-zinc-300 fill-current" />}
               </button>
             </div>
             <p className="pt-2.5 max-w-2xl text-xs sm:text-[13px] leading-[1.7] text-zinc-300 font-normal">{heroBio}</p>
