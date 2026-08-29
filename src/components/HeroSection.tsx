@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 import { Check, Github, MapPin, FileText, Pause, Play } from 'lucide-react';
 import { ThemeAccent, Language } from '../types';
 import { PERSONAL_INFO } from '../data/portfolioData';
-import musicUrl from '../assets/audio/AUD-20260724-WA0417.mp3';
+import musicUrl from '../assets/audio/audio.mp3';
 
 interface HeroProps { accent: ThemeAccent; lang: Language; onDownloadCv: () => void; }
 
@@ -64,7 +64,7 @@ export const HeroSection: React.FC<HeroProps> = ({ lang, onDownloadCv }) => {
                 <Github className="w-4 h-4" />
               </a>
               <button type="button" onClick={onDownloadCv} className="h-9 px-3.5 rounded-xl bg-[#1f2028] hover:bg-[#282a35] border border-white/10 flex items-center gap-2 text-xs font-medium text-zinc-200 hover:text-white transition-all cursor-pointer shadow-sm active:scale-95">
-                <FileText className="w-3.5 h-3.5 text-cyan-400" /><span>{id ? 'Dokumen CV' : 'CV Document'}</span>
+                <FileText className="w-3.5 h-3.5 text-cyan-400" /><span>{id ? 'Dokumen' : 'Document'}</span>
               </button>
             </div>
           </div>
