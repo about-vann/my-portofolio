@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { ThemeAccent, Language } from '../types';
 import { PERSONAL_INFO } from '../data/portfolioData';
+import musicUrl from '../assets/audio/music.mp3';
 
 interface HeroProps {
   accent: ThemeAccent;
@@ -19,36 +20,43 @@ interface HeroProps {
 
 export const HeroSection: React.FC<HeroProps> = ({ lang }) => {
   const [playing, setPlaying] = useState(false);
-  const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const heroBio = PERSONAL_INFO.bio.philosophy[lang];
 
   useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const handleEnded = () => setPlaying(false);
+    const handlePause = () => setPlaying(false);
+    const handlePlay = () => setPlaying(true);
+
+    audio.addEventListener('ended', handleEnded);
+    audio.addEventListener('pause', handlePause);
+    audio.addEventListener('play', handlePlay);
+
     return () => {
-      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      audio.pause();
+      audio.removeEventListener('ended', handleEnded);
+      audio.removeEventListener('pause', handlePause);
+      audio.removeEventListener('play', handlePlay);
     };
   }, []);
 
-  const toggleAudio = () => {
-    if (!('speechSynthesis' in window)) return;
+  const toggleAudio = async () => {
+    const audio = audioRef.current;
+    if (!audio) return;
 
-    if (playing) {
-      window.speechSynthesis.cancel();
+    try {
+      if (audio.paused) {
+        await audio.play();
+      } else {
+        audio.pause();
+      }
+    } catch {
       setPlaying(false);
-      return;
     }
-
-    const utterance = new SpeechSynthesisUtterance(heroBio);
-    utterance.lang = lang === 'id' ? 'id-ID' : 'en-US';
-    utterance.rate = 0.94;
-    utterance.pitch = 1;
-    utterance.onend = () => setPlaying(false);
-    utterance.onerror = () => setPlaying(false);
-
-    speechRef.current = utterance;
-    window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(utterance);
-    setPlaying(true);
   };
 
   const openWhatsApp = () => {
@@ -56,15 +64,21 @@ export const HeroSection: React.FC<HeroProps> = ({ lang }) => {
   };
 
   return (
-    <section id="hero" className="hero-section relative z-10 px-4 sm:px-6 pt-24 pb-14 sm:pt-32 sm:pb-20">
+    <section id="hero" className="hero-section relative z-10 px-4 sm:px-6 pt-24 pb-14 sm:pt-28 sm:pb-20">
+      <audio ref={audioRef} src={musicUrl} preload="metadata" />
+
       <motion.div
         initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-        className="hero-profile-card mx-auto w-full max-w-3xl overflow-hidden"
+        className="hero-profile-card mx-auto w-full max-w-4xl overflow-hidden"
       >
-        <div className="hero-cover" style={{ backgroundImage: `url(${PERSONAL_INFO.heroCover})` }}>
+        <div
+          className="hero-cover"
+          style={{ backgroundImage: `url(${PERSONAL_INFO.heroCover})` }}
+        >
           <div className="hero-cover-overlay" />
+          <div className="hero-cover-glow" />
         </div>
 
         <div className="hero-profile-body">
@@ -79,12 +93,13 @@ export const HeroSection: React.FC<HeroProps> = ({ lang }) => {
             >
               <Github className="h-[18px] w-[18px]" />
             </a>
+
             <button
               type="button"
               onClick={openWhatsApp}
               className="hero-contact-button"
             >
-              <MessageCircle className="h-[18px] w-[18px]" />
+              <MessageCircle className="h-[17px] w-[17px]" />
               <span>{lang === 'id' ? 'Kontak' : 'Contact'}</span>
             </button>
           </div>
@@ -109,7 +124,9 @@ export const HeroSection: React.FC<HeroProps> = ({ lang }) => {
             </div>
 
             <p className="hero-handle">
-              {PERSONAL_INFO.githubHandle} <span>·</span> {PERSONAL_INFO.title[lang]}
+              {PERSONAL_INFO.githubHandle}
+              <span>·</span>
+              {PERSONAL_INFO.title[lang]}
             </p>
 
             <div className="hero-meta-row">
@@ -117,15 +134,32 @@ export const HeroSection: React.FC<HeroProps> = ({ lang }) => {
                 <MapPin className="h-4 w-4" />
                 {PERSONAL_INFO.location}
               </span>
+
               <span className="hero-meta-dot">·</span>
+
               <button
                 type="button"
                 onClick={toggleAudio}
                 className={`hero-audio-button ${playing ? 'is-playing' : ''}`}
                 aria-pressed={playing}
+                aria-label={playing ? 'Pause music' : 'Play music'}
               >
-                {playing ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5 fill-current" />}
-                <span>{playing ? (lang === 'id' ? 'Berhenti' : 'Stop') : 'Audio Note'}</span>
+                {playing ? (
+                  <Pause className="h-3.5 w-3.5" />
+                ) : (
+                  <Play className="h-3.5 w-3.5 fill-current" />
+                )}
+
+                <span>
+                  {playing
+                    ? lang === 'id'
+                      ? 'Pause'
+                      : 'Pause'
+                    : lang === 'id'
+                      ? 'Putar musik'
+                      : 'Play music'}
+                </span>
+
                 <span className="hero-audio-bars" aria-hidden="true">
                   <i /><i /><i /><i />
                 </span>
