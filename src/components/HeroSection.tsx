@@ -4,7 +4,7 @@ import {
   Check,
   Github,
   MapPin,
-  MessageCircle,
+  FileText,
   Pause,
   Play,
 } from 'lucide-react';
@@ -18,7 +18,7 @@ interface HeroProps {
   onDownloadCv: () => void;
 }
 
-export const HeroSection: React.FC<HeroProps> = ({ lang }) => {
+export const HeroSection: React.FC<HeroProps> = ({ lang, onDownloadCv }) => {
   const [playing, setPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -96,11 +96,12 @@ export const HeroSection: React.FC<HeroProps> = ({ lang }) => {
 
             <button
               type="button"
-              onClick={openWhatsApp}
-              className="hero-contact-button"
+              onClick={onDownloadCv}
+              className="hero-contact-button cursor-pointer flex items-center gap-2"
+              title={lang === 'id' ? 'Lihat Curriculum Vitae (CV)' : 'View Curriculum Vitae (CV)'}
             >
-              <MessageCircle className="h-[17px] w-[17px]" />
-              <span>{lang === 'id' ? 'Kontak' : 'Contact'}</span>
+              <FileText className="h-[17px] w-[17px]" />
+              <span>{lang === 'id' ? 'Lihat CV' : 'View CV'}</span>
             </button>
           </div>
 

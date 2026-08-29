@@ -18,13 +18,15 @@ import {
   AlertTriangle,
   Code
 } from 'lucide-react';
-import { ThemeAccent, Language } from '../types';
+import { ThemeAccent, Language, BackgroundMode } from '../types';
 import { PERSONAL_INFO, PROJECTS, SKILLS, TERMINAL_COMMANDS_HELP } from '../data/portfolioData';
 
 interface TerminalProps {
   accent: ThemeAccent;
   setAccent: (accent: ThemeAccent) => void;
   lang: Language;
+  bgMode: BackgroundMode;
+  setBgMode: (mode: BackgroundMode) => void;
 }
 
 interface CommandLog {
@@ -104,6 +106,8 @@ export const InteractiveTerminal: React.FC<TerminalProps> = ({
   accent,
   setAccent,
   lang,
+  bgMode,
+  setBgMode,
 }) => {
   const [inputVal, setInputVal] = useState('');
   const [files, setFiles] = useState<VirtualFile[]>(DEFAULT_FILES);
@@ -126,7 +130,7 @@ export const InteractiveTerminal: React.FC<TerminalProps> = ({
             Simple Terminal [Codex-x86_64] • Masih Pemula
           </div>
           <div className="text-emerald-400 font-mono text-xs">
-            Ketik &apos;<span className="font-bold underline">help</span>&apos; untuk perintah, atau &apos;<span className="font-bold underline">run ignmasvikk.js</span>&apos; untuk menjalankan file!
+            Ketik &apos;<span className="font-bold underline">help</span>&apos; untuk perintah, &apos;<span className="font-bold underline">bg matrix</span>&apos; untuk efek background, atau &apos;<span className="font-bold underline">run ignmasvikk.js</span>&apos;!
           </div>
         </div>
       ),
@@ -366,6 +370,10 @@ export const InteractiveTerminal: React.FC<TerminalProps> = ({
                 <span className="w-28 font-bold text-white">theme &lt;name&gt;</span>
                 <span className="text-zinc-400">cyan, violet, emerald, amber</span>
               </div>
+              <div className="flex gap-2">
+                <span className="w-28 font-bold text-white">bg &lt;mode&gt;</span>
+                <span className="text-zinc-400">off, matrix, particles, stars, grid</span>
+              </div>
             </div>
           </div>
         ),
@@ -601,6 +609,66 @@ export const InteractiveTerminal: React.FC<TerminalProps> = ({
           content: <div className="text-rose-400 text-xs font-mono">Tema tidak valid. Pilih: cyan, violet, emerald, amber</div>,
         };
       }
+    } else if (lower === 'bg' || lower === 'background') {
+      outputEntry = {
+        id: `out-${Date.now()}`,
+        type: 'output',
+        content: (
+          <div className="space-y-1.5 py-1 text-xs font-mono">
+            <div className="text-zinc-400">Status Background Saat Ini: <span className="text-emerald-400 font-bold uppercase">{bgMode}</span></div>
+            <div className="text-zinc-500">// Opsi Background Tersedia:</div>
+            <div>- <span className="text-white font-bold">bg off</span> : Hitam Polos Minimalist (Default)</div>
+            <div>- <span className="text-white font-bold">bg matrix</span> : Digital Cyber Code Rain</div>
+            <div>- <span className="text-white font-bold">bg particles</span> : Connected Dynamic Mesh</div>
+            <div>- <span className="text-white font-bold">bg stars</span> : Cosmic Parallax Starfield</div>
+            <div>- <span className="text-white font-bold">bg grid</span> : Cyberpunk Perspective Grid</div>
+          </div>
+        ),
+      };
+    } else if (lower.startsWith('bg ') || lower.startsWith('background ')) {
+      const modeParam = lower.split(' ')[1];
+      if (['off', 'none', 'hitam', 'black'].includes(modeParam)) {
+        setBgMode('off');
+        outputEntry = {
+          id: `out-${Date.now()}`,
+          type: 'output',
+          content: <div className="text-emerald-400 text-xs font-mono">Background diubah: <strong>HITAM POLOS (OFF)</strong>. Minimalist pure black active.</div>,
+        };
+      } else if (['matrix', 'cyber', 'rain'].includes(modeParam)) {
+        setBgMode('matrix');
+        outputEntry = {
+          id: `out-${Date.now()}`,
+          type: 'output',
+          content: <div className="text-emerald-400 text-xs font-mono">Background diubah: <strong>DIGITAL MATRIX CODE RAIN</strong> active!</div>,
+        };
+      } else if (['particles', 'mesh', 'nodes'].includes(modeParam)) {
+        setBgMode('particles');
+        outputEntry = {
+          id: `out-${Date.now()}`,
+          type: 'output',
+          content: <div className="text-emerald-400 text-xs font-mono">Background diubah: <strong>CONNECTED PARTICLES MESH</strong> active!</div>,
+        };
+      } else if (['stars', 'starfield', 'space'].includes(modeParam)) {
+        setBgMode('stars');
+        outputEntry = {
+          id: `out-${Date.now()}`,
+          type: 'output',
+          content: <div className="text-emerald-400 text-xs font-mono">Background diubah: <strong>COSMIC PARALLAX STARS</strong> active!</div>,
+        };
+      } else if (['grid', 'synth'].includes(modeParam)) {
+        setBgMode('grid');
+        outputEntry = {
+          id: `out-${Date.now()}`,
+          type: 'output',
+          content: <div className="text-emerald-400 text-xs font-mono">Background diubah: <strong>CYBER GRID PERSPECTIVE</strong> active!</div>,
+        };
+      } else {
+        outputEntry = {
+          id: `out-${Date.now()}`,
+          type: 'error',
+          content: <div className="text-rose-400 text-xs font-mono">Mode background tidak dikenal. Pilih: <code>off</code>, <code>matrix</code>, <code>particles</code>, <code>stars</code>, <code>grid</code></div>,
+        };
+      }
     } else {
       outputEntry = {
         id: `out-${Date.now()}`,
@@ -638,7 +706,7 @@ export const InteractiveTerminal: React.FC<TerminalProps> = ({
     }
   };
 
-  const quickCommands = ['help', 'whoami', 'skills', 'run ignmasvikk.js', 'ls', 'upload', 'dino', 'clear'];
+  const quickCommands = ['help', 'whoami', 'skills', 'run ignmasvikk.js', 'bg matrix', 'bg off', 'bg particles', 'dino', 'clear'];
 
   return (
     <section 

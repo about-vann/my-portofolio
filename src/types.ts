@@ -1,6 +1,7 @@
 export type ThemeAccent = 'cyan' | 'violet' | 'emerald' | 'amber';
 export type Language = 'id' | 'en';
 export type ColorMode = 'dark' | 'light';
+export type BackgroundMode = 'off' | 'particles' | 'matrix' | 'stars' | 'grid';
 
 export interface Article {
   id: string;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react';
-import { ThemeAccent, Language, ColorMode } from './types';
+import { ThemeAccent, Language, ColorMode, BackgroundMode } from './types';
 import { InteractiveCanvasBackground } from './components/InteractiveCanvasBackground';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
@@ -40,11 +40,18 @@ export default function App() {
     return 'dark';
   });
 
+  // Background default is 'off' (pure solid black), can be changed via terminal
+  const [bgMode, setBgMode] = useState<BackgroundMode>(() => {
+    const saved = localStorage.getItem('portfolio_bg_mode');
+    if (saved && ['off', 'particles', 'matrix', 'stars', 'grid'].includes(saved)) {
+      return saved as BackgroundMode;
+    }
+    return 'off';
+  });
+
   const [isCvOpen, setIsCvOpen] = useState(false);
 
   useLayoutEffect(() => {
-    // Always start a fresh visit at the top. This runs before paint to avoid
-    // the visible jump from a browser-restored scroll position.
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
@@ -66,6 +73,10 @@ export default function App() {
   }, [lang]);
 
   useEffect(() => {
+    localStorage.setItem('portfolio_bg_mode', bgMode);
+  }, [bgMode]);
+
+  useEffect(() => {
     localStorage.setItem('portfolio_color_mode', colorMode);
     if (colorMode === 'light') {
       document.documentElement.classList.add('light-mode');
@@ -79,9 +90,10 @@ export default function App() {
   return (
     <div className={`relative min-h-screen ${colorMode === 'light' ? 'bg-[#f4f4f6] text-zinc-900' : 'bg-[#050505] text-white'} font-['Poppins',sans-serif] selection:bg-white/20 selection:text-white overflow-x-hidden transition-colors duration-300`}>
       <PageIntro accent={accent} />
-      <ScrollProgress />
-      {/* Dynamic Interactive Canvas Stars / Mesh */}
-      <InteractiveCanvasBackground accent={accent} />
+      <ScrollProgress accent={accent} />
+      
+      {/* Interactive Background (Off by default - pure solid black, configurable in terminal) */}
+      <InteractiveCanvasBackground accent={accent} bgMode={bgMode} />
 
       {/* Floating Glass Navigation */}
       <Navbar
@@ -130,6 +142,8 @@ export default function App() {
           accent={accent}
           setAccent={setAccent}
           lang={lang}
+          bgMode={bgMode}
+          setBgMode={setBgMode}
         />
 
         <ContactSection
@@ -145,7 +159,7 @@ export default function App() {
         />
       </main>
 
-      {/* CV Modal Preview */}
+      {/* CV & Recruitment Modal */}
       <CvModal
         isOpen={isCvOpen}
         onClose={() => setIsCvOpen(false)}
