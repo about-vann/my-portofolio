@@ -77,7 +77,12 @@ export default function App() {
 
   return (
     <div className={`relative min-h-screen ${colorMode === 'light' ? 'bg-[#f4f4f6] text-zinc-900' : 'bg-[#050505] text-white'} font-['Poppins',sans-serif] selection:bg-white/20 selection:text-white overflow-x-hidden transition-colors duration-300`}>
-      <PageIntro accent={accent} />
+      <PageIntro 
+        accent={accent} 
+        onFinish={() => {
+          window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        }}
+      />
       <ScrollProgress accent={accent} />
       
       {/* Interactive Background Canvas */}

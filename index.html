@@ -11,15 +11,20 @@
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Sedgwick+Ave+Display&family=JetBrains+Mono:wght@300;400;500&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
       (function () {
         try {
-          history.scrollRestoration = "manual";
+          if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+          }
+          if (window.location.hash) {
+            history.replaceState(null, '', window.location.pathname);
+          }
+          window.scrollTo(0, 0);
           var savedMode = localStorage.getItem("portfolio_color_mode");
           document.documentElement.classList.toggle("light-mode", savedMode === "light");
           document.documentElement.classList.toggle("dark", savedMode !== "light");
-          window.scrollTo(0, 0);
         } catch (_) {}
       })();
     </script>
