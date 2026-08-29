@@ -13,6 +13,7 @@ import { ArticlesSection } from './components/ArticlesSection';
 import { CvModal } from './components/CvModal';
 import { PageIntro } from './components/PageIntro';
 import { ScrollProgress } from './components/ScrollProgress';
+import { SectionDivider } from './components/SectionDivider';
 
 export default function App() {
   const [accent, setAccent] = useState<ThemeAccent>(() => {
@@ -76,7 +77,12 @@ export default function App() {
   }, [colorMode]);
 
   return (
-    <div className={`relative min-h-screen ${colorMode === 'light' ? 'bg-[#f4f4f6] text-zinc-900' : 'bg-[#050505] text-white'} font-['Poppins',sans-serif] selection:bg-white/20 selection:text-white overflow-x-hidden transition-colors duration-300`}>
+    <div className={`relative min-h-screen ${colorMode === 'light' ? 'bg-[#f5f6f9] text-zinc-900' : 'bg-[#0e1015] text-zinc-100'} font-['Poppins',sans-serif] selection:bg-white/20 selection:text-white overflow-x-hidden transition-colors duration-300`}>
+      {/* Subtle top ambient illumination for a refined, slightly lifted atmosphere */}
+      <div 
+        className="fixed inset-0 pointer-events-none z-0 opacity-40 transition-opacity duration-700 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(148,163,184,0.09),transparent)]" 
+        aria-hidden="true"
+      />
       <PageIntro 
         accent={accent} 
         onFinish={() => {
@@ -106,25 +112,35 @@ export default function App() {
           onDownloadCv={() => setIsCvOpen(true)}
         />
 
+        <SectionDivider accent={accent} id="divider-about" />
+
         <AboutSection
           accent={accent}
           lang={lang}
         />
+
+        <SectionDivider accent={accent} id="divider-skills" />
 
         <SkillsSection
           accent={accent}
           lang={lang}
         />
 
+        <SectionDivider accent={accent} id="divider-projects" />
+
         <ProjectsSection
           accent={accent}
           lang={lang}
         />
 
+        <SectionDivider accent={accent} id="divider-experience" />
+
         <ExperienceTimeline
           accent={accent}
           lang={lang}
         />
+
+        <SectionDivider accent={accent} id="divider-dino" />
 
         {/* Authentic Chrome T-Rex Dino Game */}
         <DinoGameSection
@@ -132,10 +148,14 @@ export default function App() {
           lang={lang}
         />
 
+        <SectionDivider accent={accent} id="divider-contact" />
+
         <ContactSection
           accent={accent}
           lang={lang}
         />
+
+        <SectionDivider accent={accent} id="divider-articles" />
 
         {/* Latest Articles At The Bottom */}
         <ArticlesSection

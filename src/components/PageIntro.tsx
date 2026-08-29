@@ -35,7 +35,7 @@ export const PageIntro: React.FC<PageIntroProps> = ({ onFinish }) => {
       {visible && (
         <motion.div
           id="masfik-streetwear-intro"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-[#09090b] cursor-pointer select-none overflow-hidden"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black cursor-pointer select-none overflow-hidden"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, scale: 1.04, filter: 'blur(6px)' }}
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
@@ -44,16 +44,13 @@ export const PageIntro: React.FC<PageIntroProps> = ({ onFinish }) => {
           role="status"
           aria-label="MasFik Intro Logo"
         >
-          {/* Subtle dark vignette backdrop */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)] pointer-events-none" />
-
-          {/* Centered Circular Streetwear Badge Emblem (Mirip Referensi NEOXR) */}
+          {/* Centered Circular Streetwear Badge Emblem */}
           <motion.div
             className="relative flex items-center justify-center p-4"
-            initial={{ opacity: 0, scale: 0.86 }}
+            initial={{ opacity: 0, scale: 0.88 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.06 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
           >
             <svg
               viewBox="0 0 340 340"
@@ -61,40 +58,68 @@ export const PageIntro: React.FC<PageIntroProps> = ({ onFinish }) => {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              {/* 1. Top Curved Swash Stroke (Goresan Lengkung Atas Putih) */}
+              {/* 1. Outer Fine Guide Orbit (Dashed) */}
+              <circle
+                cx="170"
+                cy="170"
+                r="136"
+                stroke="rgba(255, 255, 255, 0.08)"
+                strokeWidth="1"
+                strokeDasharray="4 6"
+              />
+
+              {/* 2. Inner Track Ring */}
+              <circle
+                cx="170"
+                cy="170"
+                r="118"
+                stroke="rgba(255, 255, 255, 0.12)"
+                strokeWidth="1.5"
+              />
+
+              {/* 3. Primary Top Circular Swash Arc (Clean Geometric Symmetrical Arc) */}
               <motion.path
-                d="M 100 96 C 122 52, 210 44, 252 74 C 274 89, 282 110, 278 126"
+                d="M 68 114 A 118 118 0 0 1 272 114"
                 stroke="#FFFFFF"
-                strokeWidth="11"
+                strokeWidth="8"
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: 1 }}
-                transition={{ duration: 0.65, ease: 'easeOut' }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
               />
 
-              {/* 2. Top-Left Floating Accent Stroke (Coretan Aksen Kiri Atas) */}
+              {/* 4. Secondary Bottom Smile Arc (Subtle Accent Arc) */}
               <motion.path
-                d="M 76 128 L 94 108"
-                stroke="#FFFFFF"
-                strokeWidth="9"
-                strokeLinecap="round"
-                initial={{ opacity: 0, scale: 0.6 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.12, duration: 0.35 }}
-              />
-
-              {/* 3. Bottom Curved Smile Arc (Lengkungan Bawah Warna Abu-Abu Gelap Streetwear) */}
-              <motion.path
-                d="M 120 238 C 152 264, 204 262, 236 236"
+                d="M 252 232 A 118 118 0 0 1 88 232"
                 stroke="#52525b"
-                strokeWidth="9"
+                strokeWidth="6"
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 0.85 }}
-                transition={{ delay: 0.18, duration: 0.55, ease: 'easeOut' }}
+                animate={{ pathLength: 1, opacity: 0.8 }}
+                transition={{ delay: 0.15, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               />
 
-              {/* 4. Main Streetwear Brand Typography: "MasFik" */}
+              {/* 5. Minimalist Outer Corner Accents */}
+              <motion.circle
+                cx="170"
+                cy="34"
+                r="2.5"
+                fill="#ffffff"
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 0.6, scale: 1 }}
+                transition={{ delay: 0.3, duration: 0.3 }}
+              />
+              <motion.circle
+                cx="170"
+                cy="306"
+                r="2.5"
+                fill="#52525b"
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 0.6, scale: 1 }}
+                transition={{ delay: 0.3, duration: 0.3 }}
+              />
+
+              {/* 6. Main Streetwear Brand Typography: "MasFik" */}
               <g className="select-none">
                 {/* Background Shadow Text for Depth */}
                 <text
@@ -130,7 +155,7 @@ export const PageIntro: React.FC<PageIntroProps> = ({ onFinish }) => {
                   transition={{ delay: 0.1, duration: 0.45 }}
                 >
                   MASFI
-                  {/* Trailing 'K' in Streetwear Grey / Outline Style (seperti huruf 'R' pada contoh) */}
+                  {/* Trailing 'K' in Streetwear Grey */}
                   <tspan
                     fill="#71717a"
                     stroke="#52525b"

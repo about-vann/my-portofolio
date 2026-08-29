@@ -43,15 +43,21 @@ export const ArticlesSection: React.FC<ArticlesSectionProps> = ({
   return (
     <section 
       id="articles" 
-      className="py-4 pb-12 px-4 sm:px-6 max-w-3xl mx-auto relative z-10 font-sans"
+      className="content-section pb-12 sm:pb-16 px-4 sm:px-6 max-w-3xl mx-auto relative z-10 font-sans"
     >
       <motion.div 
-        initial={{ opacity: 0, y: 15 }}
+        initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.4 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="space-y-3.5"
       >
+        {/* Section Kicker */}
+        <div className="section-kicker flex items-center gap-2">
+          <BookOpen className="w-3.5 h-3.5 text-zinc-400" />
+          <span>06 · {lang === 'id' ? 'Artikel & Catatan' : 'Articles & Writing'}</span>
+        </div>
+
         {/* Header Matching Connects Style */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">

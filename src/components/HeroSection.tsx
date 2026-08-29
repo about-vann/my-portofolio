@@ -64,7 +64,7 @@ export const HeroSection: React.FC<HeroProps> = ({ lang, onDownloadCv }) => {
   };
 
   return (
-    <section id="hero" className="hero-section relative z-10 px-4 sm:px-6 pt-24 pb-14 sm:pt-28 sm:pb-20">
+    <section id="hero" className="hero-section relative z-10 px-4 sm:px-6 pt-24 pb-4 sm:pt-28 sm:pb-6">
       <audio ref={audioRef} src={musicUrl} preload="metadata" />
 
       <motion.div

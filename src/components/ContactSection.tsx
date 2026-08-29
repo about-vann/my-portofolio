@@ -95,15 +95,21 @@ export const ContactSection: React.FC<ContactProps> = ({ accent, lang }) => {
   return (
     <section 
       id="contact" 
-      className="py-4 px-4 sm:px-6 max-w-3xl mx-auto relative z-10 font-sans"
+      className="content-section px-4 sm:px-6 max-w-3xl mx-auto relative z-10 font-sans"
     >
       <motion.div 
-        initial={{ opacity: 0, y: 15 }}
+        initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.4 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="space-y-3.5"
       >
+        {/* Section Kicker */}
+        <div className="section-kicker flex items-center gap-2">
+          <MessageSquare className="w-3.5 h-3.5 text-zinc-400" />
+          <span>05 · {lang === 'id' ? 'Kontak & Terhubung' : 'Contact & Connect'}</span>
+        </div>
+
         {/* Header Matching Connects Style */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">

@@ -175,13 +175,13 @@ section[id] {
 
   html {
     scroll-behavior: smooth;
-    background: #050505;
+    background: #0e1015;
   }
 
   body {
     min-width: 320px;
-    background-color: #050505;
-    color: #ffffff;
+    background-color: #0e1015;
+    color: #f4f4f5;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     overflow-anchor: none;
@@ -189,11 +189,11 @@ section[id] {
 
   html.light-mode {
     color-scheme: light;
-    background: #f5f6f8;
+    background: #f5f6f9;
   }
 
   html.light-mode body {
-    background-color: #f5f6f8;
+    background-color: #f5f6f9;
     color: #18181b;
   }
 
@@ -377,7 +377,7 @@ html.light-mode .glass-card-hover:hover {
 /* -------------------------------------------------------------------------- */
 
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-track { background: #0e1015; }
 ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
 
@@ -767,8 +767,11 @@ html.light-mode .hero-description { color: #52525b; }
   }
 }
 
-/* Keep the rest of the site's existing section system intact. */
-.content-section { padding-top:84px; padding-bottom:84px; }
+/* Standardized uniform compact section system */
+.content-section { padding-top: 14px; padding-bottom: 14px; }
+@media (min-width: 640px) {
+  .content-section { padding-top: 18px; padding-bottom: 18px; }
+}
 .section-shell { width:min(100%,var(--content-width,960px)); margin:0 auto; }
 .section-shell-wide { width:min(100%,1080px); }
 .section-kicker { color:#71717a; font-size:10px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; }
@@ -792,7 +795,7 @@ html.light-mode .hero-description { color: #52525b; }
 .timeline { position:relative; margin-left:8px; border-left:1px solid rgba(255,255,255,.08); }
 .timeline-item { position:relative; padding:0 0 42px 30px; }
 .timeline-item:last-child { padding-bottom:0; }
-.timeline-dot { position:absolute; left:-5px; top:3px; width:9px; height:9px; border-radius:999px; background:#a1a1aa; border:2px solid #050505; box-shadow:0 0 0 1px rgba(255,255,255,.1); }
+.timeline-dot { position:absolute; left:-5px; top:3px; width:9px; height:9px; border-radius:999px; background:#a1a1aa; border:2px solid #0e1015; box-shadow:0 0 0 1px rgba(255,255,255,.1); }
 
 html.light-mode .hero-profile-card { background:#fff; border-color:rgba(24,24,27,.09); box-shadow:0 14px 40px rgba(15,23,42,.07); }
 html.light-mode .hero-avatar { border-color:#fff; }

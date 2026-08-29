@@ -698,13 +698,13 @@ export const DinoGameSection: React.FC<DinoGameSectionProps> = ({ accent, lang }
   return (
     <section 
       id="dino-game"
-      className="py-6 px-4 sm:px-6 max-w-3xl mx-auto relative z-10 font-sans"
+      className="content-section px-4 sm:px-6 max-w-3xl mx-auto relative z-10 font-sans"
     >
       <motion.div
-        initial={{ opacity: 0, y: 15 }}
+        initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.4 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="space-y-3.5"
       >
         {/* Header Bar */}
