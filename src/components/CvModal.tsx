@@ -74,7 +74,7 @@ export const CvModal: React.FC<CvModalProps> = ({
             <div className="flex items-center gap-2">
               <FileText className={`w-4 h-4 ${getAccentTextClass()}`} />
               <h2 className="text-sm font-bold text-white tracking-wide uppercase">
-                {lang === 'id' ? 'Curriculum Vitae Pribadi' : 'Personal Curriculum Vitae'}
+                {lang === 'id' ? 'Curriculum Vitae (CV)' : 'Curriculum Vitae (CV)'}
               </h2>
             </div>
 
@@ -190,8 +190,8 @@ export const CvModal: React.FC<CvModalProps> = ({
               </h3>
               <div className="p-3.5 rounded-xl bg-zinc-900/60 border border-white/5 flex flex-col sm:flex-row justify-between sm:items-center gap-2 text-xs">
                 <div>
-                  <div className="font-bold text-white">Full-Stack & Web System Developer</div>
-                  <div className="text-zinc-400">Surabaya, Jawa Timur, Indonesia</div>
+                  <div className="font-bold text-white">System Learning & Web System Developer</div>
+                  <div className="text-zinc-400">Universitas Surabaya, Jawa Timur, Indonesia</div>
                 </div>
                 <span className="font-mono text-zinc-500">2023 - Sekarang</span>
               </div>
