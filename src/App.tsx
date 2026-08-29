@@ -1,19 +1,13 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
-import { ThemeAccent, Language, ColorMode, BackgroundMode } from './types';
-import { InteractiveCanvasBackground } from './components/InteractiveCanvasBackground';
+import React, { useState, useEffect } from 'react';
+import { ThemeAccent, Language, ColorMode } from './types';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { AboutSection } from './components/AboutSection';
-import { SkillsSection } from './components/SkillsSection';
 import { ProjectsSection } from './components/ProjectsSection';
-import { ExperienceTimeline } from './components/ExperienceTimeline';
-import { DinoGameSection } from './components/DinoGameSection';
 import { ContactSection } from './components/ContactSection';
 import { ArticlesSection } from './components/ArticlesSection';
 import { CvModal } from './components/CvModal';
-import { PageIntro } from './components/PageIntro';
-import { ScrollProgress } from './components/ScrollProgress';
-import { SectionDivider } from './components/SectionDivider';
+import { PERSONAL_INFO } from './data/portfolioData';
 
 export default function App() {
   const [accent, setAccent] = useState<ThemeAccent>(() => {
@@ -40,22 +34,7 @@ export default function App() {
     return 'dark';
   });
 
-  const [bgMode] = useState<BackgroundMode>('off');
-
   const [isCvOpen, setIsCvOpen] = useState(false);
-
-  useLayoutEffect(() => {
-    if ('scrollRestoration' in window.history) {
-      window.history.scrollRestoration = 'manual';
-    }
-
-    const resetScroll = () => window.scrollTo(0, 0);
-    resetScroll();
-    window.requestAnimationFrame(resetScroll);
-    window.addEventListener('pageshow', resetScroll);
-
-    return () => window.removeEventListener('pageshow', resetScroll);
-  }, []);
 
   useEffect(() => {
     localStorage.setItem('portfolio_theme_accent', accent);
@@ -77,24 +56,8 @@ export default function App() {
   }, [colorMode]);
 
   return (
-    <div className={`relative min-h-screen ${colorMode === 'light' ? 'bg-[#f5f6f9] text-zinc-900' : 'bg-[#0e1015] text-zinc-100'} font-['Poppins',sans-serif] selection:bg-white/20 selection:text-white overflow-x-hidden transition-colors duration-300`}>
-      {/* Subtle top ambient illumination for a refined, slightly lifted atmosphere */}
-      <div 
-        className="fixed inset-0 pointer-events-none z-0 opacity-40 transition-opacity duration-700 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(148,163,184,0.09),transparent)]" 
-        aria-hidden="true"
-      />
-      <PageIntro 
-        accent={accent} 
-        onFinish={() => {
-          window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-        }}
-      />
-      <ScrollProgress accent={accent} />
-      
-      {/* Interactive Background Canvas */}
-      <InteractiveCanvasBackground accent={accent} bgMode={bgMode} />
-
-      {/* Floating Glass Navigation */}
+    <div className={`min-h-screen ${colorMode === 'light' ? 'bg-[#f0f2f5] text-zinc-900' : 'bg-[#0e0f14] text-zinc-100'} font-['Poppins',sans-serif] selection:bg-white/20 selection:text-white transition-colors duration-300 antialiased`}>
+      {/* Top Header Navbar */}
       <Navbar
         accent={accent}
         setAccent={setAccent}
@@ -102,75 +65,55 @@ export default function App() {
         setLang={setLang}
         colorMode={colorMode}
         setColorMode={setColorMode}
+        onDownloadCv={() => setIsCvOpen(true)}
       />
 
-      {/* Main Single-View Scroll Sections */}
-      <main className="relative z-10">
+      {/* Main Single-Column Feed Layout matching video */}
+      <main className="max-w-xl mx-auto px-4 pb-12 space-y-4">
+        {/* Profile Card / Hero */}
         <HeroSection
           accent={accent}
           lang={lang}
           onDownloadCv={() => setIsCvOpen(true)}
         />
 
-        <SectionDivider accent={accent} id="divider-about" />
-
+        {/* About Card */}
         <AboutSection
           accent={accent}
           lang={lang}
         />
 
-        <SectionDivider accent={accent} id="divider-skills" />
-
-        <SkillsSection
-          accent={accent}
-          lang={lang}
-        />
-
-        <SectionDivider accent={accent} id="divider-projects" />
-
+        {/* Featured Projects Card */}
         <ProjectsSection
           accent={accent}
           lang={lang}
         />
 
-        <SectionDivider accent={accent} id="divider-experience" />
-
-        <ExperienceTimeline
-          accent={accent}
-          lang={lang}
-        />
-
-        <SectionDivider accent={accent} id="divider-dino" />
-
-        {/* Authentic Chrome T-Rex Dino Game */}
-        <DinoGameSection
-          accent={accent}
-          lang={lang}
-        />
-
-        <SectionDivider accent={accent} id="divider-contact" />
-
+        {/* Connects Card (Direct Channels) */}
         <ContactSection
           accent={accent}
           lang={lang}
         />
 
-        <SectionDivider accent={accent} id="divider-articles" />
-
-        {/* Latest Articles At The Bottom */}
+        {/* Latest Articles Card */}
         <ArticlesSection
           accent={accent}
           lang={lang}
           colorMode={colorMode}
         />
+
+        {/* Footer */}
+        <footer className="text-center pt-4 pb-8 text-xs text-zinc-500 font-mono">
+          <p>© 2026 {PERSONAL_INFO.brandName || 'Ignmasvikk Creative'} • {PERSONAL_INFO.name}</p>
+        </footer>
       </main>
 
-      {/* CV Modal */}
+      {/* CV Document Modal */}
       <CvModal
         isOpen={isCvOpen}
         onClose={() => setIsCvOpen(false)}
-        accent={accent}
         lang={lang}
+        accent={accent}
       />
     </div>
   );

@@ -3,15 +3,16 @@ import profileAvatar from '../assets/images/profile-avatar.jpg';
 import heroCover from '../assets/images/hero-cover.jpg';
 
 export const PERSONAL_INFO = {
-  name: 'Ignmasvikk',
+  name: 'Muhammad Fikri',
+  brandName: 'Ignmasvikk Creative',
   alias: 'Ignmasvikk',
   title: {
-    id: 'Full-Stack Developer',
-    en: 'Full-Stack Developer',
+    id: 'Web & Bot Developer',
+    en: 'Web & Bot Developer',
   },
   tagline: {
-    id: 'Developer muda berusia 17 tahun dari Surabaya yang berfokus membangun aplikasi web modern, performa tinggi, dan antarmuka minimalis.',
-    en: '17-year-old Full-Stack Developer from Surabaya focused on building modern, high-performance web applications and minimalist interfaces.',
+    id: 'Full-stack developer focused exclusively on personal projects, building modern and scalable web applications with React, developing WhatsApp bots, and integrating reliable WhatsApp gateway solutions for seamless automation and communication.',
+    en: 'Full-stack developer focused exclusively on personal projects, building modern and scalable web applications with React, developing WhatsApp bots, and integrating reliable WhatsApp gateway solutions for seamless automation and communication.',
   },
   age: '17 Year',
   location: 'Surabaya, Indonesia',
@@ -20,7 +21,7 @@ export const PERSONAL_INFO = {
   formattedPhone: '+62 877-2140-1837',
   whatsapp: 'https://wa.me/6287721401837',
   github: 'https://github.com/about-vann',
-  githubHandle: '@about-vann',
+  githubHandle: '@ignmasvikk',
   instagram: 'https://instagram.com/piikkkri_',
   instagramHandle: '@piikkkri_',
   telegram: 'https://t.me/masvanz',
@@ -28,11 +29,10 @@ export const PERSONAL_INFO = {
   linkedin: 'https://linkedin.com',
   twitter: 'https://twitter.com',
   avatar: profileAvatar,
-  // Replace this URL with your own cover/banner image when needed.
   heroCover,
   note: {
-    id: 'Full-Stack Developer',
-    en: 'Full-Stack Developer',
+    id: 'Web & Bot Developer',
+    en: 'Web & Bot Developer',
   },
   availability: {
     status: 'open',
@@ -49,249 +49,187 @@ export const PERSONAL_INFO = {
   ],
   bio: {
     philosophy: {
-      id: 'Full-Stack Developer muda berbasis di Surabaya yang berfokus pada pengembangan aplikasi web cepat, arsitektur backend andal, dan desain antarmuka bersih serta interaktif.',
-      en: 'Young Full-Stack Developer based in Surabaya focused on fast web application engineering, reliable backend architectures, and clean interactive interface design.',
+      id: 'Full-stack developer focused exclusively on personal projects, building modern and scalable web applications with React, developing WhatsApp bots, and integrating reliable WhatsApp gateway solutions for seamless automation and communication.',
+      en: 'Full-stack developer focused exclusively on personal projects, building modern and scalable web applications with React, developing WhatsApp bots, and integrating reliable WhatsApp gateway solutions for seamless automation and communication.',
     },
     background: {
-      id: 'Spesialisasi dalam TypeScript, React, Node.js, Express, dan integrasi API terkini untuk menciptakan sistem digital yang efisien.',
-      en: 'Specializing in TypeScript, React, Node.js, Express, and modern API integrations to create streamlined digital systems.',
+      id: 'Specializing in TypeScript, React, Node.js, Express, Baileys multi-device bot framework, and robust RESTful API gateways.',
+      en: 'Specializing in TypeScript, React, Node.js, Express, Baileys multi-device bot framework, and robust RESTful API gateways.',
+    },
+    aboutIntro: {
+      id: 'Welcome to my developer ecosystem, a self-built infrastructure that brings web applications, WhatsApp bots, and gateway services together under one unified platform.',
+      en: 'Welcome to my developer ecosystem, a self-built infrastructure that brings web applications, WhatsApp bots, and gateway services together under one unified platform.',
+    },
+    aboutBody: {
+      id: 'Built from the ground up, the ecosystem is designed for seamless integration between web and bot services, enabling automation, real-time communication, and scalable service management through a lightweight and highly responsive architecture.',
+      en: 'Built from the ground up, the ecosystem is designed for seamless integration between web and bot services, enabling automation, real-time communication, and scalable service management through a lightweight and highly responsive architecture.',
     },
   },
 };
 
 export const PROJECTS: Project[] = [
   {
-    id: 'neural-canvas',
-    title: 'NeuralCanvas AI Studio',
-    category: 'ai',
-    categoryLabel: { id: 'AI & Generatif', en: 'AI & Generative' },
+    id: 'ignmasvikk-wb',
+    title: '@ignmasvikk/wb',
+    category: 'system',
+    categoryLabel: { id: 'Bot Framework', en: 'Bot Framework' },
+    techBadge: 'TS',
+    typeBadge: 'NPM',
     summary: {
-      id: 'Platform pembuatan dan manipulasi aset visual bertenaga AI dengan canvas interaktif real-time dan pipeline latensi rendah.',
-      en: 'AI-powered visual asset generation and canvas manipulation suite with real-time feedback and low-latency pipelines.',
+      id: 'WhatsApp Bot framework and multi-device automation library for Node.js.',
+      en: 'WhatsApp Bot framework and multi-device automation library for Node.js.',
     },
     description: {
-      id: 'NeuralCanvas menggabungkan kekuatan model difusi dan LLM ke dalam antarmuka web yang intuitif. Memungkinkan tim desainer dan developer menghasilkan mockup UI, tekstur 3D, dan ilustrasi vektor dalam hitungan detik dengan akselerasi WebGL.',
-      en: 'NeuralCanvas fuses generative diffusion models and LLMs into an intuitive canvas UI, enabling design and engineering teams to synthesize UI mockups, 3D textures, and vector assets in sub-seconds with WebGL acceleration.',
+      id: 'Framework WhatsApp Bot multi-device berlatensi rendah untuk Node.js dengan arsitektur modular, event-driven socket handling, dan dukungan koneksi persistent Baileys yang stabil untuk kebutuhan otomasi skala enterprise.',
+      en: 'High-performance WhatsApp multi-device automation framework for Node.js featuring modular plugins, event-driven socket pipelines, and robust session persistence.',
     },
     image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=80',
-    tags: ['React', 'TypeScript', 'Gemini AI', 'Tailwind CSS', 'WebGL', 'FastAPI'],
-    liveUrl: 'https://example.com/demo/neural-canvas',
-    githubUrl: 'https://github.com/example/neural-canvas',
+    tags: ['TypeScript', 'Node.js', 'Baileys', 'Multi-Device', 'NPM Package'],
+    liveUrl: 'https://github.com/about-vann',
+    githubUrl: 'https://github.com/about-vann',
     featured: true,
     year: '2026',
     metrics: [
-      { label: { id: 'Waktu Render', en: 'Render Latency' }, value: '< 240ms' },
-      { label: { id: 'Pengguna Aktif', en: 'Active Users' }, value: '14.2k+' },
+      { label: { id: 'Latency', en: 'Latency' }, value: '< 120ms' },
+      { label: { id: 'Uptime', en: 'Uptime' }, value: '99.9%' },
     ],
     architecture: {
       overview: {
-        id: 'Arsitektur modular berbasis event-driven client dengan sinkronisasi WebSockets dan kompresi layer WebAssembly.',
-        en: 'Modular event-driven client architecture with bidirectional WebSocket sync and WebAssembly layer compression.',
+        id: 'Arsitektur modular event handler dengan session state SQLite / JSON terenkripsi.',
+        en: 'Modular event-driven architecture with encrypted local session storage.',
       },
       challenges: {
-        id: 'Mengelola state canvas berukuran gigabit tanpa menurunkan framerate 60 FPS pada perangkat mobile.',
-        en: 'Managing gigabyte-scale canvas state while sustaining steady 60 FPS framerates on lower-end mobile devices.',
+        id: 'Menjaga reconnect otomatis tanpa disconnect saat handshakes socket berubah.',
+        en: 'Sustaining zero-downtime auto reconnect during WhatsApp socket protocol updates.',
       },
       solutions: {
-        id: 'Menggunakan spatial partitioning quadtree dan offscreen canvas rendering workers.',
-        en: 'Implemented spatial quadtree partitioning combined with offscreen canvas background workers.',
+        id: 'Exponential backoff reconnect loop dengan buffer antrean pesan.',
+        en: 'Implemented exponential backoff recovery loop with in-memory message queuing.',
       },
-      stack: ['React 19', 'TypeScript', 'Tailwind v4', 'Web Workers', 'FastAPI', 'Redis'],
+      stack: ['TypeScript', 'Node.js', 'Baileys', 'Pino Logger', 'NPM'],
     },
   },
   {
-    id: 'nexus-terminal',
-    title: 'Nexus DeFi & Asset Terminal',
-    category: 'web',
-    categoryLabel: { id: 'Fintech & Web', en: 'Fintech & Web' },
-    summary: {
-      id: 'Terminal trading desentralisasi dengan visualisasi orderbook sub-milidetik, chart candlestick d3, dan analitik portofolio.',
-      en: 'Decentralized trading workstation featuring sub-millisecond orderbook telemetry, D3 candlestick feeds, and asset risk analytics.',
-    },
-    description: {
-      id: 'Nexus adalah dashboard keuangan masa depan yang menghadirkan kecepatan tingkat institusional ke browser web. Dilengkapi dengan alert cerdas, eksekusi multi-chain, dan proteksi transaksi otomatis.',
-      en: 'Nexus is a futuristic financial workstation bringing institutional execution speeds directly to the web browser with intelligent alerts, multi-chain routing, and slippage guardrails.',
-    },
-    image: 'https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&w=1000&q=80',
-    tags: ['React', 'D3.js', 'WebSockets', 'Tailwind CSS', 'Ethers.js', 'Node.js'],
-    liveUrl: 'https://example.com/demo/nexus-terminal',
-    githubUrl: 'https://github.com/example/nexus-terminal',
-    featured: true,
-    year: '2025',
-    metrics: [
-      { label: { id: 'Throughput', en: 'Throughput' }, value: '50k ops/s' },
-      { label: { id: 'Volume Transaksi', en: 'Trade Volume' }, value: '$120M+' },
-    ],
-    architecture: {
-      overview: {
-        id: 'Streaming data real-time melalui SSE & WebSockets dengan buffer ring berkinerja tinggi.',
-        en: 'Real-time data streaming via SSE & WebSockets backed by a memory-efficient client ring buffer.',
-      },
-      challenges: {
-        id: 'Mencegah bottleneck re-render UI pada volume update pasar ekstrem (>1000 pesan per detik).',
-        en: 'Eliminating UI re-render bottlenecks during peak market volatility (>1000 tick updates per second).',
-      },
-      solutions: {
-        id: 'Virtualisasi list DOM dan batching state menggunakan requestAnimationFrame.',
-        en: 'Virtual windowed DOM lists with requestAnimationFrame state batching.',
-      },
-      stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'D3.js', 'Go backend'],
-    },
-  },
-  {
-    id: 'quantum-cloud',
-    title: 'QuantumOps Cloud Orchestrator',
+    id: 'ignmasvikk-bot',
+    title: 'Ignmasvikk Bot',
     category: 'system',
-    categoryLabel: { id: 'Cloud & Sistem', en: 'Cloud & System' },
+    categoryLabel: { id: 'WhatsApp Bot', en: 'WhatsApp Bot' },
+    techBadge: 'JS',
+    typeBadge: 'BOT',
     summary: {
-      id: 'Sistem visualisasi infrastruktur cloud multi-region dengan auto-scaling otomatis dan mitigasi anomali AI.',
-      en: 'Multi-region cloud infrastructure visualizer with autonomic auto-scaling and predictive AI anomaly mitigation.',
+      id: 'WhatsApp Bot powered by @ignmasvikk/wb with a modular plugin system.',
+      en: 'WhatsApp Bot powered by @ignmasvikk/wb with a modular plugin system.',
     },
     description: {
-      id: 'Memberikan visibilitas 360 derajat atas ribuan microservices yang berjalan di kluster Kubernetes global, dengan topologi interaktif 3D dan mitigasi latency cerdas.',
-      en: 'Provides 360-degree observability over thousands of microservices running across global Kubernetes clusters with 3D interactive topologies and latency mitigation.',
+      id: 'Bot WhatsApp serbaguna yang ditenagai engine @ignmasvikk/wb. Memiliki ratusan fitur plugin: AI assistant, media downloader, automasi grup, games interaktif, dan integrasi API real-time.',
+      en: 'Multi-purpose WhatsApp automation bot powered by @ignmasvikk/wb. Includes rich plugin suite: AI assistant, media downloader, group management, and real-time APIs.',
     },
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1000&q=80',
-    tags: ['TypeScript', 'Three.js / Canvas', 'Docker', 'Kubernetes', 'Golang', 'GraphQL'],
-    liveUrl: 'https://example.com/demo/quantum-cloud',
-    githubUrl: 'https://github.com/example/quantum-cloud',
+    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=80',
+    tags: ['JavaScript', 'Node.js', 'Bot Automation', 'REST API', 'Plugin Engine'],
+    liveUrl: 'https://t.me/masvanz',
+    githubUrl: 'https://github.com/about-vann',
     featured: true,
-    year: '2025',
+    year: '2026',
     metrics: [
-      { label: { id: 'Penghematan Biaya', en: 'Cost Saved' }, value: '38%' },
-      { label: { id: 'Kluster Terpantau', en: 'Monitored Pods' }, value: '5,000+' },
+      { label: { id: 'Total Perintah', en: 'Commands' }, value: '150+' },
+      { label: { id: 'Pesan Terproses', en: 'Processed' }, value: '500k+' },
     ],
     architecture: {
       overview: {
-        id: 'Integrasi Prometheus/OpenTelemetry dengan visualisasi topologi graf.',
-        en: 'Prometheus and OpenTelemetry integration rendered with dynamic graph topology shaders.',
+        id: 'Plugin loader dinamis yang memuat command script secara on-the-fly tanpa restart bot.',
+        en: 'Hot-reloading dynamic plugin loader executing command modules on-the-fly.',
       },
       challenges: {
-        id: 'Merender ribuan node dan edge koneksi jaringan secara responsif.',
-        en: 'Smoothly rendering thousands of interconnected nodes without GPU frame stutter.',
+        id: 'Mencegah spam command dan konsumsi resource berlebih pada grup besar.',
+        en: 'Mitigating command flooding and excessive CPU load in heavy group chats.',
       },
       solutions: {
-        id: 'Instanced mesh rendering dengan WebGL shader kustom.',
-        en: 'Instanced 3D mesh rendering pipeline utilizing custom GLSL shaders.',
+        id: 'Rate limiting bertingkat per user dan group cooldown bucket.',
+        en: 'Multi-tier rate limiting with in-memory cooldown bucket algorithms.',
       },
-      stack: ['React', 'Three.js', 'GraphQL Subscriptions', 'Golang', 'OpenTelemetry'],
+      stack: ['JavaScript', 'Node.js', 'Express', 'FFmpeg', 'Axios'],
     },
   },
   {
-    id: 'aether-os',
-    title: 'AetherOS Web Desktop Environment',
+    id: 'ignmasvikk-webly',
+    title: '@ignmasvikk/webly',
     category: 'web',
-    categoryLabel: { id: 'Web & UI/UX', en: 'Web & UI/UX' },
+    categoryLabel: { id: 'Web Utility', en: 'Web Utility' },
+    techBadge: 'TS',
+    typeBadge: 'NPM',
     summary: {
-      id: 'Sistem antarmuka web desktop futuristik dengan file system virtual, terminal built-in, dan multi-windowing dinamis.',
-      en: 'Futuristic browser-based desktop environment featuring virtual filesystem, built-in terminal, and fluid multi-window manager.',
+      id: 'Lightweight web utility package for building and managing modern web applications',
+      en: 'Lightweight web utility package for building and managing modern web applications',
     },
     description: {
-      id: 'Eksperimen UI masa depan yang mengaburkan batas antara aplikasi web dan native OS. Memiliki arsitektur event-driven, window drag-and-drop mutakhir, dan sistem plugin modular.',
-      en: 'A futuristic web UI experiment blurring the boundaries between desktop operating systems and web apps, complete with window snapping and modular plugin sandbox.',
+      id: 'Paket utilitas web JavaScript/TypeScript yang super ringan untuk mempermudah caching data di browser, helper manipulasi string & array, color format conversion, dan HTTP client wrappers.',
+      en: 'Ultra-lightweight web utilities package for modern JS/TS apps, offering smart client caching, format helpers, and clean HTTP client wrappers.',
     },
     image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1000&q=80',
-    tags: ['React', 'Tailwind CSS', 'Motion', 'IndexedDB', 'TypeScript'],
-    liveUrl: 'https://example.com/demo/aether-os',
-    githubUrl: 'https://github.com/example/aether-os',
-    featured: false,
-    year: '2024',
+    tags: ['TypeScript', 'NPM', 'Utility', 'Web Performance', 'Tree-shaking'],
+    liveUrl: 'https://github.com/about-vann',
+    githubUrl: 'https://github.com/about-vann',
+    featured: true,
+    year: '2025',
     metrics: [
-      { label: { id: 'Ukuran Bundle', en: 'Bundle Size' }, value: '82 KB' },
-      { label: { id: 'Lighthouse Score', en: 'Lighthouse' }, value: '100' },
+      { label: { id: 'Ukuran Paket', en: 'Package Size' }, value: '4.2 KB' },
+      { label: { id: 'Zero Deps', en: 'Zero Deps' }, value: '100%' },
     ],
     architecture: {
       overview: {
-        id: 'Window manager berbasis React Context dengan z-index coordinator.',
-        en: 'Zero-dependency window management system powered by React context state coordination.',
+        id: 'Arsitektur pure ES Module dengan tree-shaking maksimal dan zero external dependencies.',
+        en: 'Pure ESM module architecture compiled with esbuild for zero-dependency tree-shaking.',
       },
       challenges: {
-        id: 'Sinkronisasi window layering, drag boundaries, dan persistensi virtual filesystem.',
-        en: 'Managing overlapping window layering, drag boundary physics, and indexedDB file caching.',
+        id: 'Menjaga ukuran bundle di bawah 5 KB tanpa mengurangi utilitas penting.',
+        en: 'Keeping bundle size strictly under 5 KB while providing essential web utilities.',
       },
       solutions: {
-        id: 'Penggunaan PointerCapture API dan arsitektur atomic state store.',
-        en: 'PointerCapture API coupled with an atomic state manager for lag-free drag dynamics.',
+        id: 'Micro-modular export dengan TypeScript strict mode.',
+        en: 'Micro-modular exports with strictly typed pure utility primitives.',
       },
-      stack: ['React', 'Motion', 'Tailwind', 'Web Audio API'],
+      stack: ['TypeScript', 'Vite / esbuild', 'NPM'],
     },
   },
   {
-    id: 'omnisync-mobile',
-    title: 'OmniSync Cross-Platform Vault',
-    category: 'mobile',
-    categoryLabel: { id: 'Mobile & Security', en: 'Mobile & Security' },
+    id: 'open-api',
+    title: 'Open API',
+    category: 'web',
+    categoryLabel: { id: 'Backend API', en: 'Backend API' },
+    techBadge: 'JS',
+    typeBadge: 'WEB',
     summary: {
-      id: 'Aplikasi enkripsi data ujung-ke-ujung (E2EE) dengan sinkronisasi P2P offline-first dan otentikasi biometrik.',
-      en: 'End-to-end encrypted offline-first data vault featuring peer-to-peer sync and hardware biometric authentication.',
+      id: 'A Node.js backend framework for building modern web applications and RESTful APIs.',
+      en: 'A Node.js backend framework for building modern web applications and RESTful APIs.',
     },
     description: {
-      id: 'Solusi keamanan dokumen dan aset rahasia dengan arsitektur zero-knowledge proof. Data dienkripsi secara lokal sebelum dikirim melalui protokol WebRTC.',
-      en: 'A zero-knowledge confidential document and secret manager encrypting everything client-side prior to decentralized WebRTC transport.',
+      id: 'Framework backend service RESTful API berbasis Node.js & Express yang terstruktur, cepat, dan dilengkapi otentikasi API Key, scraper utilities, media converter, dan gateway proxies terintegrasi.',
+      en: 'Structured Node.js RESTful API gateway framework equipped with API Key management, web scraping utilities, media converters, and proxy pipelines.',
     },
-    image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1000&q=80',
-    tags: ['React Native / Web', 'WebCrypto API', 'WebRTC', 'Tailwind', 'Rust'],
-    liveUrl: 'https://example.com/demo/omnisync',
-    githubUrl: 'https://github.com/example/omnisync',
-    featured: false,
-    year: '2024',
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1000&q=80',
+    tags: ['Node.js', 'Express', 'REST API', 'API Gateway', 'Scraper'],
+    liveUrl: 'https://github.com/about-vann',
+    githubUrl: 'https://github.com/about-vann',
+    featured: true,
+    year: '2025',
     metrics: [
-      { label: { id: 'Enkripsi', en: 'Encryption' }, value: 'AES-256-GCM' },
-      { label: { id: 'Zero-Knowledge', en: 'Zero-Knowledge' }, value: 'Verified' },
+      { label: { id: 'Throughput', en: 'Throughput' }, value: '12k req/s' },
+      { label: { id: 'Response', en: 'Avg Response' }, value: '45ms' },
     ],
     architecture: {
       overview: {
-        id: 'Enkripsi WebCrypto di sisi klien dengan WebRTC peer mesh.',
-        en: 'Client-side WebCrypto encryption layer orchestrated over WebRTC mesh network.',
+        id: 'Express cluster multi-core dengan middleware rate limiter dan caching layer.',
+        en: 'Multi-core clustered Express gateway with token bucket rate limiters and caching.',
       },
       challenges: {
-        id: 'Resolusi konflik data pada mode offline multi-perangkat.',
-        en: 'Conflict-free replicated data types (CRDTs) resolution across disconnected mobile nodes.',
+        id: 'Mengelola ribuan concurrent request scraper tanpa kena IP rate limit target.',
+        en: 'Handling high-concurrency requests while avoiding third-party rate limits.',
       },
       solutions: {
-        id: 'Penerapan algoritma Yjs CRDT untuk auto-merge data tanpa server pusat.',
-        en: 'Integrated Yjs CRDT state trees for deterministic distributed conflict resolution.',
+        id: 'Rotasi dynamic proxy pool dan user-agent pooling.',
+        en: 'Dynamic proxy pool rotation with intelligent request header randomization.',
       },
-      stack: ['React', 'TypeScript', 'WebCrypto', 'Yjs', 'Tailwind'],
-    },
-  },
-  {
-    id: 'sentio-health',
-    title: 'Sentio AI Health Matrix',
-    category: 'ai',
-    categoryLabel: { id: 'HealthTech & AI', en: 'HealthTech & AI' },
-    summary: {
-      id: 'Analisis prediktif biomarker kesehatan dan pelacak kebiasaan holistik dengan visualisasi metriks pintar.',
-      en: 'Predictive health biomarker intelligence engine and biometric tracker with interactive health span forecasting.',
-    },
-    description: {
-      id: 'Platform kesehatan modern yang memproses data fisiologis wearables secara real-time, memberikan rekomendasi nutrisi dan pemulihan berbasis sains.',
-      en: 'Next-gen health intelligence platform processing multi-sensor telemetry to provide personalized recovery and cognitive focus scores.',
-    },
-    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1000&q=80',
-    tags: ['React', 'Python', 'Tailwind CSS', 'Recharts', 'Gemini AI'],
-    liveUrl: 'https://example.com/demo/sentio-health',
-    githubUrl: 'https://github.com/example/sentio-health',
-    featured: false,
-    year: '2024',
-    metrics: [
-      { label: { id: 'Akurasi Prediksi', en: 'Accuracy' }, value: '96.4%' },
-      { label: { id: 'Data Point', en: 'Data Points' }, value: '2M+/Hari' },
-    ],
-    architecture: {
-      overview: {
-        id: 'Pipeline time-series dengan integrasi Gemini API untuk penjelasan diagnosa ramah pengguna.',
-        en: 'Time-series forecasting pipeline synthesized into natural language summaries using Gemini API.',
-      },
-      challenges: {
-        id: 'Privasi data medis ketat dan visualisasi time-series yang padat.',
-        en: 'Strict data masking compliance alongside dense multi-axis biometric visualization.',
-      },
-      solutions: {
-        id: 'Desensitisasi data sebelum pemrosesan dan visualisasi chart dinamis berbasis Recharts & SVG.',
-        en: 'Client-side data sanitization with adaptive dynamic Recharts SVG pipelines.',
-      },
-      stack: ['React', 'TypeScript', 'Recharts', 'Tailwind', 'Python'],
+      stack: ['JavaScript', 'Node.js', 'Express', 'Axios', 'Cheerio'],
     },
   },
 ];
@@ -577,71 +515,99 @@ export const TESTIMONIALS: Testimonial[] = [
 
 export const ARTICLES: Article[] = [
   {
-    id: 'art-1',
-    title: 'Instalasi Script Optima & Bot di VPS Linux',
-    slug: 'instalasi-script-optima-vps',
+    id: 'art-ip-blocked',
+    title: 'IP Terblokir',
+    slug: 'ip-terblokir',
+    reads: '59 reads',
+    date: '2026',
+    iconType: 'shield-alert',
+    excerpt: 'Pada dasarnya, Ignmasvikk API tidak memblokir akses berdasarkan negara tertentu. Namun, kenapa IP bisa terblokir dan bagaimana solusinya?',
+    content: `### Mengapa IP Bisa Terblokir di Server / API Gateway?
+
+Pada dasarnya, **Ignmasvikk API** tidak memblokir akses berdasarkan negara atau lokasi geografis tertentu. Namun, ada beberapa kondisi sistem keamanan di mana alamat IP pengguna atau server VPS Anda dapat masuk ke dalam daftar proteksi firewall / Cloudflare security mitigations.
+
+---
+
+#### 1. Penyebab Utama IP Terblokir
+- **Flooding Request / Rate Limiting**: Mengirimkan request berulang kali dalam jeda milidetik tanpa jeda (melebihi ambang batas proteksi DDoS).
+- **Reputasi IP Datacenter/VPS**: Beberapa provider hosting murah sering kali memiliki subnet IP yang telah masuk blacklist global Spamhaus/AbuseIPDB akibat aktivitas penyalahgunaan dari penyewa sebelumnya.
+- **Header Request Kosong / Tidak Standar**: Bot atau client scraper yang tidak menyertakan \`User-Agent\` yang valid otomatis dicurigai sebagai bot jahat oleh Web Application Firewall (WAF).
+- **Koneksi WebSocket Terputus Paksa**: Menginisiasi ratusan sesi multi-device WhatsApp tanpa menutup koneksi socket lama.
+
+---
+
+#### 2. Cara Mengatasi & Rekomendasi Solusi
+
+##### A. Periksa Format Header Request
+Pastikan setiap request dari bot atau backend Anda selalu menyertakan User-Agent yang natural:
+\`\`\`javascript
+const axios = require('axios');
+
+const response = await axios.get('https://api.ignmasvikk.my.id/endpoint', {
+  headers: {
+    'User-Agent': 'IgnmasvikkClient/2.0 (Linux; Node.js 20)',
+    'Accept': 'application/json'
+  },
+  timeout: 10000
+});
+\`\`\`
+
+##### B. Gunakan Jeda / Delay Antar Request
+Terapkan jitter dan throttling saat melakukan scraping atau broadcast:
+\`\`\`javascript
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+await delay(1500); // Jeda minimal 1.5 detik
+\`\`\`
+
+##### C. Rotasi IP / Residential Proxy
+Jika Anda menjalankan bot pada server VPS ber-IP kotor, gunakan rotasi proxy terpercaya untuk merutekan request outbound.
+
+##### D. Hubungi Admin / Whitelist IP
+Jika IP Anda tetap terblokir secara permanen padahal request berstatus normal, hubungi kontak resmi melalui Telegram \`@masvanz\` untuk pengecekan log firewall.`,
+  },
+  {
+    id: 'art-wa-bot',
+    title: 'WhatsApp Bot Multi-Device Automation',
+    slug: 'whatsapp-bot-multi-device',
+    reads: '84 reads',
+    date: '2026',
+    iconType: 'bot',
+    excerpt: 'Membangun arsitektur bot WhatsApp multi-device dengan Baileys socket persistence dan event streaming yang stabil...',
+    content: `### Arsitektur WhatsApp Multi-Device Modern
+
+Membangun bot WhatsApp yang stabil membutuhkan penanganan socket koneksi yang tahan banting terhadap network drops.
+
+- **Session Handling**: Menggunakan database SQLite atau file terenkripsi untuk session auth.
+- **Event-Driven Architecture**: Memisahkan handler pesan masuk, update status, dan command parser.
+- **Auto Reconnect**: Implementasi reconnect otomatis saat WhatsApp melakukan rotasi keys.`,
+  },
+  {
+    id: 'art-vps-install',
+    title: 'Instalasi Script Bot & API di VPS Linux',
+    slug: 'instalasi-script-bot-vps',
     reads: '95 reads',
     date: '2026',
-    excerpt: 'Sebelum memulai, pastikan sudah punya 3 hal berikut: Script Optima, akses root VPS Ubuntu/Debian, dan Node.js runtime terpasang...',
-    content: `### Panduan Instalasi Script Optima di VPS
+    iconType: 'server',
+    excerpt: 'Sebelum memulai, pastikan sudah punya VPS Ubuntu/Debian, akses SSH root, dan Node.js LTS terpasang...',
+    content: `### Panduan Instalasi Script & Bot di VPS Linux
 
-Panduan konfigurasi server VPS untuk menjalankan script bot, RESTful API, dan service otomasi dengan performa optimal.
+Panduan konfigurasi server VPS untuk menjalankan bot dan API gateway secara stabil dengan PM2:
 
-#### Persyaratan Sistem:
-1. VPS dengan OS Ubuntu 22.04 LTS / Debian 11+
-2. Minimal RAM 1GB & 1 Core CPU
-3. Akses SSH / Root Terminal
-
-#### Langkah Instalasi:
 \`\`\`bash
-# 1. Update paket server
+# 1. Update server
 sudo apt update && sudo apt upgrade -y
 
-# 2. Pasang Node.js LTS & Git
+# 2. Pasang Node.js LTS
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt install -y nodejs git build-essential
 
-# 3. Clone repository & install dependencies
-git clone https://github.com/about-vann/optima-core.git
-cd optima-core
-npm install
-
-# 4. Jalankan dengan PM2 Process Manager
+# 3. Jalankan dengan PM2 Process Manager
 sudo npm install -g pm2
-pm2 start index.js --name "optima-service"
+pm2 start index.js --name "ignmasvikk-service"
 pm2 startup && pm2 save
 \`\`\`
 
-Service Anda sekarang berjalan di latar belakang (background daemon) dengan auto-restart otomatis.`,
-  },
-  {
-    id: 'art-2',
-    title: 'Membangun Web Full-Stack Cepat dengan Vite + Tailwind',
-    slug: 'membangun-web-fullstack-vite-tailwind',
-    reads: '142 reads',
-    date: '2026',
-    excerpt: 'Langkah praktis menyusun struktur modular TypeScript, konfigurasi Tailwind, dan animasi interaktif Motion...',
-    content: `### Arsitektur Web Modern 2026
-
-Penggunaan Vite bersama Tailwind CSS memberikan pengalaman development instan tanpa lag.
-
-- **Fast Bundling**: Menggunakan esbuild di bawah naungan Vite.
-- **Type-Safety**: Skema TypeScript ketat mencegah runtime bug.
-- **Micro-Interactions**: Animasi halus memperkaya estetika aplikasi.`,
-  },
-  {
-    id: 'art-3',
-    title: 'Tips Optimasi Performa & Latensi API Node.js',
-    slug: 'tips-optimasi-performa-api-nodejs',
-    reads: '88 reads',
-    date: '2026',
-    excerpt: 'Teknik caching memori, penanganan koneksi asynchronous, dan manajemen resource hemat memori pada server...',
-    content: `### Optimasi Server Node.js
-
-Cara memaksimalkan throughput server pada spesifikasi hemat resource:
-1. Hindari blocking event loop dengan async/await yang tepat.
-2. Gunakan Redis/In-memory caching untuk data yang sering diakses.
-3. Kompresi respon dengan gzip / brotli.`,
+Service Anda sekarang berjalan 24/7 di latar belakang dengan auto-restart.`,
   },
 ];
 

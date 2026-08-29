@@ -11,6 +11,8 @@ export interface Article {
   date: string;
   excerpt: string;
   content: string;
+  iconType?: 'shield-alert' | 'bot' | 'server' | 'terminal' | 'file';
+  image?: string;
 }
 
 export interface Project {
@@ -22,6 +24,8 @@ export interface Project {
   description: { id: string; en: string };
   image: string;
   tags: string[];
+  techBadge?: 'TS' | 'JS' | 'PY' | 'REACT';
+  typeBadge?: 'NPM' | 'BOT' | 'WEB' | 'API' | 'APP';
   liveUrl?: string;
   githubUrl?: string;
   featured: boolean;

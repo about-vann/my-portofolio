@@ -59,115 +59,120 @@ export const HeroSection: React.FC<HeroProps> = ({ lang, onDownloadCv }) => {
     }
   };
 
-  const openWhatsApp = () => {
-    window.open(PERSONAL_INFO.whatsapp, '_blank', 'noopener,noreferrer');
-  };
-
   return (
-    <section id="hero" className="hero-section relative z-10 px-4 sm:px-6 pt-24 pb-4 sm:pt-28 sm:pb-6">
+    <section id="hero" className="w-full">
       <audio ref={audioRef} src={musicUrl} preload="metadata" />
 
       <motion.div
-        initial={{ opacity: 0, y: 18 }}
+        initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-        className="hero-profile-card mx-auto w-full max-w-4xl overflow-hidden"
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="w-full rounded-2xl bg-[#15161c] border border-white/[0.07] overflow-hidden shadow-xl"
       >
-        <div
-          className="hero-cover"
-          style={{ backgroundImage: `url(${PERSONAL_INFO.heroCover})` }}
-        >
-          <div className="hero-cover-overlay" />
-          <div className="hero-cover-glow" />
+        {/* Cover Photo */}
+        <div className="relative h-44 sm:h-52 w-full overflow-hidden bg-zinc-900">
+          <img
+            src={PERSONAL_INFO.heroCover}
+            alt="Hero Cover"
+            className="w-full h-full object-cover opacity-90 filter brightness-90"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#15161c]/80 via-transparent to-black/20" />
         </div>
 
-        <div className="hero-profile-body">
-          <div className="hero-profile-actions" aria-label="Profile actions">
-            <a
-              href={PERSONAL_INFO.github}
-              target="_blank"
-              rel="noreferrer"
-              className="hero-icon-button"
-              aria-label="GitHub"
-              title="GitHub"
-            >
-              <Github className="h-[18px] w-[18px]" />
-            </a>
-
-            <button
-              type="button"
-              onClick={onDownloadCv}
-              className="hero-contact-button cursor-pointer flex items-center gap-2"
-              title={lang === 'id' ? 'My Simple CV' : 'My Simple CV'}
-            >
-              <FileText className="h-[17px] w-[17px]" />
-              <span>{lang === 'id' ? 'Dokumen' : 'Document'}</span>
-            </button>
-          </div>
-
-          <div className="hero-avatar-wrap">
-            <img
-              src={PERSONAL_INFO.avatar}
-              alt={PERSONAL_INFO.name}
-              className="hero-avatar"
-            />
-            <span className="hero-verified-avatar" aria-hidden="true">
-              <Check className="h-3 w-3" strokeWidth={3} />
-            </span>
-          </div>
-
-          <div className="hero-profile-content">
-            <div className="hero-name-row">
-              <h1>{PERSONAL_INFO.name}</h1>
-              <span className="hero-verified" aria-label="Verified">
-                <Check className="h-3 w-3" strokeWidth={3} />
-              </span>
+        {/* Profile Card Body */}
+        <div className="px-5 pb-5 pt-0">
+          {/* Avatar & Action Row */}
+          <div className="flex items-end justify-between -mt-12 sm:-mt-14 mb-3.5">
+            {/* Avatar */}
+            <div className="relative">
+              <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-4 border-[#15161c] bg-[#1d1f27] overflow-hidden shadow-2xl">
+                <img
+                  src={PERSONAL_INFO.avatar}
+                  alt={PERSONAL_INFO.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
 
-            <p className="hero-handle">
-              {PERSONAL_INFO.githubHandle}
-              <span>·</span>
-              {PERSONAL_INFO.title[lang]}
+            {/* Actions: GitHub & Dokumen CV */}
+            <div className="flex items-center gap-2 pb-1">
+              <a
+                href={PERSONAL_INFO.github}
+                target="_blank"
+                rel="noreferrer"
+                className="w-9 h-9 rounded-xl bg-[#1f2028] hover:bg-[#282a35] border border-white/10 flex items-center justify-center text-zinc-300 hover:text-white transition-all cursor-pointer shadow-sm active:scale-95"
+                title="GitHub"
+                aria-label="GitHub"
+              >
+                <Github className="w-4 h-4" />
+              </a>
+
+              <button
+                type="button"
+                onClick={onDownloadCv}
+                className="h-9 px-3.5 rounded-xl bg-[#1f2028] hover:bg-[#282a35] border border-white/10 flex items-center gap-2 text-xs font-medium text-zinc-200 hover:text-white transition-all cursor-pointer shadow-sm active:scale-95"
+              >
+                <FileText className="w-3.5 h-3.5 text-cyan-400" />
+                <span>{lang === 'id' ? 'Dokumen CV' : 'CV Document'}</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Name & Title */}
+          <div className="space-y-1.5">
+            <div className="flex items-center gap-2">
+              <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                {PERSONAL_INFO.name}
+              </h1>
+              {/* Blue Verified Badge */}
+              <div 
+                className="w-4 h-4 rounded-full bg-[#0084ff] flex items-center justify-center text-white shadow-sm"
+                title="Verified Developer"
+              >
+                <Check className="w-2.5 h-2.5 stroke-[3.5]" />
+              </div>
+            </div>
+
+            <p className="text-xs text-zinc-400 font-mono tracking-tight flex items-center gap-1.5">
+              <span>{PERSONAL_INFO.githubHandle}</span>
+              <span className="text-zinc-600">•</span>
+              <span>{PERSONAL_INFO.title[lang]}</span>
             </p>
 
-            <div className="hero-meta-row">
-              <span className="hero-meta-item">
-                <MapPin className="h-4 w-4" />
-                {PERSONAL_INFO.location}
-              </span>
+            {/* Location & Audio Note */}
+            <div className="flex items-center gap-3 pt-1 text-xs text-zinc-400">
+              <div className="flex items-center gap-1 text-zinc-400">
+                <MapPin className="w-3.5 h-3.5 text-zinc-500" />
+                <span>{PERSONAL_INFO.location}</span>
+              </div>
 
-              <span className="hero-meta-dot">·</span>
+              <span className="text-zinc-600">•</span>
 
               <button
                 type="button"
                 onClick={toggleAudio}
-                className={`hero-audio-button ${playing ? 'is-playing' : ''}`}
-                aria-pressed={playing}
-                aria-label={playing ? 'Pause' : 'Play'}
+                className="flex items-center gap-1.5 text-xs text-zinc-300 hover:text-white bg-white/[0.06] hover:bg-white/[0.1] px-2.5 py-0.5 rounded-full border border-white/[0.08] transition-all cursor-pointer select-none"
               >
                 {playing ? (
-                  <Pause className="h-3.5 w-3.5" />
+                  <Pause className="w-3 h-3 text-cyan-400" />
                 ) : (
-                  <Play className="h-3.5 w-3.5 fill-current" />
+                  <Play className="w-3 h-3 fill-current text-cyan-400" />
                 )}
-
-                <span>
-                  {playing
-                    ? lang === 'id'
-                      ? 'Pause'
-                      : 'Pause'
-                    : lang === 'id'
-                      ? 'Putar'
-                      : 'Play'}
-                </span>
-
-                <span className="hero-audio-bars" aria-hidden="true">
-                  <i /><i /><i /><i />
-                </span>
+                <span>Audio Note</span>
+                {playing && (
+                  <div className="flex items-end gap-0.5 h-3 ml-0.5">
+                    <span className="w-0.5 bg-cyan-400 rounded-full eq-bar-1" />
+                    <span className="w-0.5 bg-cyan-400 rounded-full eq-bar-2" />
+                    <span className="w-0.5 bg-cyan-400 rounded-full eq-bar-3" />
+                  </div>
+                )}
               </button>
             </div>
 
-            <p className="hero-description">{heroBio}</p>
+            {/* Bio Description */}
+            <p className="pt-2 text-xs sm:text-[13px] leading-relaxed text-zinc-300 font-normal">
+              {heroBio}
+            </p>
           </div>
         </div>
       </motion.div>
