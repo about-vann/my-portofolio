@@ -98,10 +98,10 @@ export const HeroSection: React.FC<HeroProps> = ({ lang, onDownloadCv }) => {
               type="button"
               onClick={onDownloadCv}
               className="hero-contact-button cursor-pointer flex items-center gap-2"
-              title={lang === 'id' ? 'Lihat Curriculum Vitae (CV)' : 'View Curriculum Vitae (CV)'}
+              title={lang === 'id' ? 'My Simple CV' : 'My Simple CV'}
             >
               <FileText className="h-[17px] w-[17px]" />
-              <span>{lang === 'id' ? 'Lihat CV' : 'View CV'}</span>
+              <span>{lang === 'id' ? 'Dokumen' : 'Document'}</span>
             </button>
           </div>
 
@@ -143,7 +143,7 @@ export const HeroSection: React.FC<HeroProps> = ({ lang, onDownloadCv }) => {
                 onClick={toggleAudio}
                 className={`hero-audio-button ${playing ? 'is-playing' : ''}`}
                 aria-pressed={playing}
-                aria-label={playing ? 'Pause music' : 'Play music'}
+                aria-label={playing ? 'Pause' : 'Play'}
               >
                 {playing ? (
                   <Pause className="h-3.5 w-3.5" />
