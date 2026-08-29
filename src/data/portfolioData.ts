@@ -575,27 +575,6 @@ export const TESTIMONIALS: Testimonial[] = [
   },
 ];
 
-export const TERMINAL_COMMANDS_HELP = {
-  id: [
-    { cmd: 'help', desc: 'Menampilkan daftar perintah terminal yang tersedia' },
-    { cmd: 'whoami', desc: 'Informasi singkat tentang profil pengembang' },
-    { cmd: 'skills', desc: 'Menampilkan ringkasan keahlian teknis' },
-    { cmd: 'projects', desc: 'Menampilkan daftar proyek unggulan' },
-    { cmd: 'contact', desc: 'Menampilkan jalur kontak langsung' },
-    { cmd: 'stats', desc: 'Statistik performa dan rekayasa kode' },
-    { cmd: 'clear', desc: 'Membersihkan layar terminal' },
-  ],
-  en: [
-    { cmd: 'help', desc: 'Show all available interactive CLI commands' },
-    { cmd: 'whoami', desc: 'Brief overview of developer persona' },
-    { cmd: 'skills', desc: 'List core technical competencies' },
-    { cmd: 'projects', desc: 'List standout featured projects' },
-    { cmd: 'contact', desc: 'Show direct communication channels' },
-    { cmd: 'stats', desc: 'Display engineering telemetry & metrics' },
-    { cmd: 'clear', desc: 'Clear the terminal output history' },
-  ],
-};
-
 export const ARTICLES: Article[] = [
   {
     id: 'art-1',

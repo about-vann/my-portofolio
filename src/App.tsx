@@ -8,7 +8,6 @@ import { SkillsSection } from './components/SkillsSection';
 import { ProjectsSection } from './components/ProjectsSection';
 import { ExperienceTimeline } from './components/ExperienceTimeline';
 import { DinoGameSection } from './components/DinoGameSection';
-import { InteractiveTerminal } from './components/InteractiveTerminal';
 import { ContactSection } from './components/ContactSection';
 import { ArticlesSection } from './components/ArticlesSection';
 import { CvModal } from './components/CvModal';
@@ -40,14 +39,7 @@ export default function App() {
     return 'dark';
   });
 
-  // Background default is 'off' (pure solid black), can be changed via terminal
-  const [bgMode, setBgMode] = useState<BackgroundMode>(() => {
-    const saved = localStorage.getItem('portfolio_bg_mode');
-    if (saved && ['off', 'particles', 'matrix', 'stars', 'grid'].includes(saved)) {
-      return saved as BackgroundMode;
-    }
-    return 'off';
-  });
+  const [bgMode] = useState<BackgroundMode>('off');
 
   const [isCvOpen, setIsCvOpen] = useState(false);
 
@@ -73,10 +65,6 @@ export default function App() {
   }, [lang]);
 
   useEffect(() => {
-    localStorage.setItem('portfolio_bg_mode', bgMode);
-  }, [bgMode]);
-
-  useEffect(() => {
     localStorage.setItem('portfolio_color_mode', colorMode);
     if (colorMode === 'light') {
       document.documentElement.classList.add('light-mode');
@@ -92,7 +80,7 @@ export default function App() {
       <PageIntro accent={accent} />
       <ScrollProgress accent={accent} />
       
-      {/* Interactive Background (Off by default - pure solid black, configurable in terminal) */}
+      {/* Interactive Background Canvas */}
       <InteractiveCanvasBackground accent={accent} bgMode={bgMode} />
 
       {/* Floating Glass Navigation */}
@@ -133,17 +121,10 @@ export default function App() {
           lang={lang}
         />
 
+        {/* Authentic Chrome T-Rex Dino Game */}
         <DinoGameSection
           accent={accent}
           lang={lang}
-        />
-
-        <InteractiveTerminal
-          accent={accent}
-          setAccent={setAccent}
-          lang={lang}
-          bgMode={bgMode}
-          setBgMode={setBgMode}
         />
 
         <ContactSection
@@ -151,7 +132,7 @@ export default function App() {
           lang={lang}
         />
 
-        {/* Latest Articles Replaces Footer At The Very Bottom */}
+        {/* Latest Articles At The Bottom */}
         <ArticlesSection
           accent={accent}
           lang={lang}
@@ -159,7 +140,7 @@ export default function App() {
         />
       </main>
 
-      {/* CV & Recruitment Modal */}
+      {/* CV Modal */}
       <CvModal
         isOpen={isCvOpen}
         onClose={() => setIsCvOpen(false)}
