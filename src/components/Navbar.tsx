@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { MoreHorizontal, FileText, UserRound, LayoutGrid, MessageCircle, Newspaper, Home } from 'lucide-react';
+import { MoreHorizontal, FileText, UserRound, LayoutGrid, MessageCircle, Newspaper, Home, Languages } from 'lucide-react';
 import { ThemeAccent, Language, ColorMode } from '../types';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
@@ -35,12 +35,14 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang, colorMode, setCol
     requestAnimationFrame(() => document.getElementById(target)?.scrollIntoView({ behavior: 'smooth', block: 'start' }));
   };
 
+  const toggleLanguage = () => setLang(id ? 'en' : 'id');
+
   const menuItems = [
     { id: 'home', label: id ? 'Beranda' : 'Home', icon: Home },
     { id: 'about', label: id ? 'Tentang' : 'About', icon: UserRound },
     { id: 'projects', label: id ? 'Proyek' : 'Projects', icon: LayoutGrid },
-    { id: 'contact', label: id ? 'Kontak' : 'Contact', icon: MessageCircle },
     { id: 'articles', label: id ? 'Artikel' : 'Articles', icon: Newspaper },
+    { id: 'contact', label: id ? 'Kontak' : 'Contact', icon: MessageCircle },
   ];
 
   return (
@@ -66,7 +68,7 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang, colorMode, setCol
 
           <AnimatePresence>
             {menuOpen && (
-              <motion.div initial={{ opacity: 0, scale: 0.95, y: 8 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 8 }} transition={{ duration: 0.15 }} className="nav-dropdown absolute right-0 top-11 w-52 rounded-2xl border shadow-2xl p-2 z-50 overflow-hidden">
+              <motion.div initial={{ opacity: 0, scale: 0.95, y: 8 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 8 }} transition={{ duration: 0.15 }} className="nav-dropdown absolute right-0 top-11 w-56 rounded-2xl border shadow-2xl p-2 z-50 overflow-hidden">
                 <div className="space-y-1">
                   {menuItems.map(({ id: target, label, icon: Icon }) => (
                     <button key={target} type="button" onClick={() => goTo(target)} className="nav-item w-full flex items-center gap-2.5 px-3 py-2.5 text-xs font-medium rounded-xl transition-colors text-left cursor-pointer">
@@ -74,6 +76,17 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang, colorMode, setCol
                       <span>{label}</span>
                     </button>
                   ))}
+
+                  <div className="nav-divider h-px my-1" />
+
+                  <button type="button" onClick={toggleLanguage} className="nav-item w-full flex items-center justify-between gap-2.5 px-3 py-2.5 text-xs font-medium rounded-xl transition-colors text-left cursor-pointer">
+                    <div className="flex items-center gap-2.5">
+                      <Languages className="w-4 h-4 text-cyan-400" />
+                      <span>{id ? 'Bahasa Indonesia' : 'English'}</span>
+                    </div>
+                    <span className="text-[10px] text-zinc-500 font-mono">→ {id ? 'EN' : 'ID'}</span>
+                  </button>
+
                   {onDownloadCv && (
                     <button type="button" onClick={() => { setMenuOpen(false); onDownloadCv(); }} className="nav-item w-full flex items-center gap-2.5 px-3 py-2.5 text-xs font-medium rounded-xl transition-colors text-left cursor-pointer">
                       <FileText className="w-4 h-4 text-cyan-400" />
