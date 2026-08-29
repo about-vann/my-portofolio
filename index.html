@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="id" class="dark scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ignmasvikk — Personal Portfolio</title>
+    <meta name="description" content="Personal portfolio of Ignmasvikk — projects, experience, creative work, and interactive experiences." />
+    <meta property="og:title" content="Ignmasvikk — Personal Portfolio" />
+    <meta property="og:description" content="Personal portfolio of Ignmasvikk — projects, experience, creative work, and interactive experiences." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+      (function () {
+        try {
+          history.scrollRestoration = "manual";
+          var savedMode = localStorage.getItem("portfolio_color_mode");
+          document.documentElement.classList.toggle("light-mode", savedMode === "light");
+          document.documentElement.classList.toggle("dark", savedMode !== "light");
+          window.scrollTo(0, 0);
+        } catch (_) {}
+      })();
+    </script>
+  </head>
+  <body class="bg-[#050505] text-white font-['Poppins',sans-serif] antialiased selection:bg-white/20 selection:text-white overflow-x-hidden">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

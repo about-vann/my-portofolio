@@ -1,0 +1,6 @@
+{
+  "name": "Futuristic Portfolio",
+  "description": "Portofolio Stack Developer Ignmasvikk (17 Thn, Surabaya) dengan Arcade Cyber Dino Runner mini game dan interactive CLI code execution engine.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
