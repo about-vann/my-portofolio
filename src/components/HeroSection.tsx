@@ -10,7 +10,7 @@ import {
 } from 'lucide-react';
 import { ThemeAccent, Language } from '../types';
 import { PERSONAL_INFO } from '../data/portfolioData';
-import musicUrl from '../assets/audio/music.mp3';
+import musicUrl from '../assets/audio/AUD-20260724-WA0417.mp3';
 
 interface HeroProps {
   accent: ThemeAccent;
