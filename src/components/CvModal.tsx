@@ -20,15 +20,55 @@ export const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose, lang }) => {
   const exportPdf = async () => {
     if (!cvRef.current || exporting) return;
     setExporting(true);
+    let cloneHost: HTMLDivElement | null = null;
     try {
-      const element = cvRef.current;
-      const canvas = await html2canvas(element, {
+      // Render an isolated, visible-in-layout clone. Capturing the scrollable modal itself
+      // can produce a blank canvas on some mobile browsers.
+      const source = cvRef.current;
+      cloneHost = document.createElement('div');
+      cloneHost.style.cssText = 'position:absolute;left:-10000px;top:0;width:794px;background:#fff;z-index:-1;visibility:hidden;';
+      const clone = source.cloneNode(true) as HTMLElement;
+      clone.removeAttribute('id');
+      clone.style.cssText = 'display:block;width:794px;max-width:none;height:auto;min-height:0;overflow:visible;padding:32px 40px 40px;margin:0;background:#fff;color:#18181b;box-sizing:border-box;';
+      clone.querySelectorAll<HTMLElement>('.cv-profile,.cv-contact-grid,.cv-experience-item').forEach(el => {
+        el.style.breakInside = 'avoid';
+      });
+      cloneHost.appendChild(clone);
+      document.body.appendChild(cloneHost);
+
+      // Wait for fonts/images before rasterizing the isolated CV.
+      if ('fonts' in document) await document.fonts.ready;
+      const images = Array.from(clone.querySelectorAll('img'));
+      await Promise.all(images.map(img => img.complete ? Promise.resolve() : new Promise<void>(resolve => {
+        img.addEventListener('load', () => resolve(), { once: true });
+        img.addEventListener('error', () => resolve(), { once: true });
+      })));
+
+      cloneHost.style.visibility = 'visible';
+      const canvas = await html2canvas(clone, {
         scale: 2,
         useCORS: true,
+        allowTaint: false,
         backgroundColor: '#ffffff',
         logging: false,
+        width: 794,
         windowWidth: 794,
+        scrollX: 0,
+        scrollY: 0,
+        onclone: clonedDoc => {
+          const cloned = clonedDoc.querySelector('.cv-pdf-document') as HTMLElement | null;
+          if (cloned) {
+            cloned.style.display = 'block';
+            cloned.style.visibility = 'visible';
+            cloned.style.overflow = 'visible';
+            cloned.style.height = 'auto';
+            cloned.style.maxHeight = 'none';
+          }
+        }
       });
+
+      if (!canvas.width || !canvas.height) throw new Error('CV canvas is empty');
+
       const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4', compress: true });
       const pageWidth = 210;
       const pageHeight = 297;
@@ -36,9 +76,10 @@ export const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose, lang }) => {
       const usableWidth = pageWidth - margin * 2;
       const usableHeight = pageHeight - margin * 2;
       const ratio = usableWidth / canvas.width;
-      const pageCanvasHeight = Math.floor(usableHeight / ratio);
+      const pageCanvasHeight = Math.max(1, Math.floor(usableHeight / ratio));
       let sourceY = 0;
       let page = 0;
+
       while (sourceY < canvas.height) {
         const sliceHeight = Math.min(pageCanvasHeight, canvas.height - sourceY);
         const slice = document.createElement('canvas');
@@ -54,11 +95,13 @@ export const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose, lang }) => {
         sourceY += sliceHeight;
         page += 1;
       }
+
       const safeName = PERSONAL_INFO.name.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '') || 'CV';
       pdf.save(`CV-${safeName}.pdf`);
     } catch (error) {
       console.error('Failed to export CV PDF:', error);
     } finally {
+      if (cloneHost) cloneHost.remove();
       setExporting(false);
     }
   };
