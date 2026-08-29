@@ -79,10 +79,17 @@ export const HeroSection: React.FC<HeroProps> = ({ lang, onDownloadCv }) => {
             <div className="flex items-center gap-3 pt-1 text-xs text-zinc-400">
               <div className="flex items-center gap-1 text-zinc-400"><MapPin className="w-3.5 h-3.5 text-zinc-500" /><span>{PERSONAL_INFO.location}</span></div>
               <span className="text-zinc-600">•</span>
-              <button type="button" onClick={toggleAudio} className="flex items-center gap-1.5 text-xs text-zinc-300 hover:text-white bg-white/[0.06] hover:bg-white/[0.1] px-2.5 py-0.5 rounded-full border border-white/[0.08] transition-all cursor-pointer select-none">
-                {playing ? <Pause className="w-3 h-3 text-cyan-400" /> : <Play className="w-3 h-3 fill-current text-cyan-400" />}
+              <button type="button" onClick={toggleAudio} aria-label={playing ? 'Pause audio' : 'Play audio'} className="group flex items-center gap-1.5 text-[11px] text-zinc-200 hover:text-white bg-white/[0.06] hover:bg-white/[0.1] px-2.5 py-1 rounded-full border border-white/[0.08] transition-all cursor-pointer select-none">
+                {playing ? <Pause className="w-3 h-3 text-white" /> : <Play className="w-3 h-3 fill-current text-white" />}
                 <span>{id ? 'Catatan Audio' : 'Audio Note'}</span>
-                {playing && <div className="flex items-end gap-0.5 h-3 ml-0.5"><span className="w-0.5 bg-cyan-400 rounded-full eq-bar-1" /><span className="w-0.5 bg-cyan-400 rounded-full eq-bar-2" /><span className="w-0.5 bg-cyan-400 rounded-full eq-bar-3" /></div>}
+                {playing && (
+                  <div className="flex items-end gap-0.5 h-3 ml-0.5" aria-hidden="true">
+                    <span className="w-0.5 bg-white rounded-full eq-bar-1" />
+                    <span className="w-0.5 bg-zinc-400 rounded-full eq-bar-2" />
+                    <span className="w-0.5 bg-white rounded-full eq-bar-3" />
+                    <span className="w-0.5 bg-zinc-500 rounded-full eq-bar-4" />
+                  </div>
+                )}
               </button>
             </div>
             <p className="pt-2 text-xs sm:text-[13px] leading-relaxed text-zinc-300 font-normal">{heroBio}</p>
