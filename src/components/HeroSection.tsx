@@ -157,8 +157,8 @@ export const HeroSection: React.FC<HeroProps> = ({ lang, onDownloadCv }) => {
                       ? 'Pause'
                       : 'Pause'
                     : lang === 'id'
-                      ? 'Putar musik'
-                      : 'Play music'}
+                      ? 'Putar'
+                      : 'Play'}
                 </span>
 
                 <span className="hero-audio-bars" aria-hidden="true">
