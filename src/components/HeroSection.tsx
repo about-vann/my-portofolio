@@ -3,7 +3,6 @@ import { motion } from 'motion/react';
 import { Check, Github, MapPin, FileText, Pause, Play } from 'lucide-react';
 import { ThemeAccent, Language } from '../types';
 import { PERSONAL_INFO } from '../data/portfolioData';
-import musicUrl from '../assets/audio/audio.mp3';
 
 interface HeroProps { accent: ThemeAccent; lang: Language; onDownloadCv: () => void; }
 
@@ -47,7 +46,7 @@ export const HeroSection: React.FC<HeroProps> = ({ lang, onDownloadCv }) => {
             <div className="relative"><div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full border-4 border-[#15161c] bg-[#1d1f27] overflow-hidden shadow-2xl"><img src={PERSONAL_INFO.avatar} alt={PERSONAL_INFO.name} className="w-full h-full object-cover" /></div></div>
             <div className="flex items-center gap-2 pb-1">
               <a href={PERSONAL_INFO.github} target="_blank" rel="noreferrer" className="w-9 h-9 rounded-xl bg-[#1f2028] hover:bg-[#282a35] border border-white/10 flex items-center justify-center text-zinc-300 hover:text-white transition-all cursor-pointer shadow-sm active:scale-95" title="GitHub" aria-label="GitHub"><Github className="w-4 h-4" /></a>
-              <button type="button" onClick={onDownloadCv} className="hidden lg:flex h-9 px-3.5 rounded-xl bg-[#1f2028] hover:bg-[#282a35] border border-white/10 items-center gap-2 text-xs font-medium text-zinc-200 hover:text-white transition-all cursor-pointer shadow-sm active:scale-95"><FileText className="w-3.5 h-3.5 text-cyan-400" /><span>{id ? 'Dokumen' : 'Document'}</span></button>
+              <button type="button" onClick={onDownloadCv} className="flex h-9 px-3.5 rounded-xl bg-[#1f2028] hover:bg-[#282a35] border border-white/10 items-center gap-2 text-xs font-medium text-zinc-200 hover:text-white transition-all cursor-pointer shadow-sm active:scale-95" title={id ? 'Buka CV' : 'Open CV'} aria-label={id ? 'Buka CV' : 'Open CV'}><FileText className="w-3.5 h-3.5 text-zinc-300" /><span>{id ? 'Dokumen' : 'Document'}</span></button>
             </div>
           </div>
           <div className="space-y-1.5">
