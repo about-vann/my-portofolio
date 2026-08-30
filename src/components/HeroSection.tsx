@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Check, Github, MapPin, FileText, Pause, Play } from 'lucide-react';
 import { ThemeAccent, Language } from '../types';
 import { PERSONAL_INFO } from '../data/portfolioData';
+import musicUrl from '../assets/audio/audio.mp3';
 
 interface HeroProps { accent: ThemeAccent; lang: Language; onDownloadCv: () => void; }
 
