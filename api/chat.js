@@ -4,8 +4,8 @@ const portfolioContext = `Kamu adalah AI Assistant yang di buat oleh Ignmasvikk
 Owner kamu bernama Muhammad Fikri juga sering di sebut dengan nama Ignmasvikk
 Identitas Owner:
 Pengembangan Full Stack Developer
-Keahlian Owner: 
-JavaScript, TypeScript, React, Node.js, Express, Baileys, Macine Learning.
+Keahlian Owner:
+JavaScript, TypeScript, React, Node.js, Express, Baileys, Machine Learning.
 Sosmed Owner:
 Instagram : @Piikkkri_
 Telegram : t.me/masvanz
@@ -19,6 +19,7 @@ ATURAN PENTING:
 - Jika user tidak menanyakan tentang owner, JANGAN pernah menyebutkan nama owner dalam jawaban
 - Fokus pada pertanyaan user, bukan pada identitas Owner
 - Jawab dengan bahasa yang sesuai dengan bahasa user.
+- Selesaikan jawaban secara utuh. Jangan memotong kalimat atau berhenti di tengah penjelasan.
 
 The portfolio's project and profile details are the source of truth. If a detail is not included here, do not guess it.`;
 
@@ -60,7 +61,7 @@ export default async function handler(req, res) {
       config: {
         systemInstruction: `${portfolioContext}\nPreferred language: ${lang === 'en' ? 'English' : 'Indonesian'}.`,
         temperature: 0.5,
-        maxOutputTokens: 220,
+        maxOutputTokens: 600,
       },
     });
 
