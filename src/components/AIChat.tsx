@@ -16,15 +16,15 @@ interface AIChatProps {
 }
 
 const accentClasses: Record<ThemeAccent, string> = {
-  cyan: 'text-cyan-400 bg-cyan-400/10 border-cyan-400/20',
-  violet: 'text-violet-400 bg-violet-400/10 border-violet-400/20',
-  emerald: 'text-emerald-400 bg-emerald-400/10 border-emerald-400/20',
-  amber: 'text-amber-400 bg-amber-400/10 border-amber-400/20',
+  cyan: 'text-zinc-200 bg-white/5 border-white/10',
+  violet: 'text-zinc-200 bg-white/5 border-white/10',
+  emerald: 'text-zinc-200 bg-white/5 border-white/10',
+  amber: 'text-zinc-200 bg-white/5 border-white/10',
 };
 
 const quickPrompts = {
-  id: ['Siapa Vann?', 'Apa saja project-nya?', 'Tech stack yang digunakan?'],
-  en: ['Who is Vann?', 'What projects has he built?', 'What tech stack does he use?'],
+  id: ['Siapa Fikri?', 'Apa saja project-nya?', 'Tech stack yang digunakan?'],
+  en: ['Who is Fikri?', 'What projects has he built?', 'What tech stack does he use?'],
 };
 
 export function AIChat({ isOpen, onClose, lang, accent }: AIChatProps) {
@@ -69,8 +69,8 @@ export function AIChat({ isOpen, onClose, lang, accent }: AIChatProps) {
       setMessages((current) => [...current, {
         role: 'assistant',
         text: lang === 'id'
-          ? 'Maaf, AI sedang tidak tersedia. Coba lagi beberapa saat lagi.'
-          : 'Sorry, the AI is currently unavailable. Please try again in a moment.',
+          ? 'Maaf, AI sedang tidak tersedia. Coba lagi nanti.'
+          : 'Sorry, the AI is unavailable right now. Try again later.',
       }]);
     } finally {
       setLoading(false);
@@ -110,7 +110,7 @@ export function AIChat({ isOpen, onClose, lang, accent }: AIChatProps) {
                   <Sparkles size={17} />
                 </div>
                 <div className="hidden sm:block">
-                  <p className="text-sm font-semibold">Luciláa AI</p>
+                  <p className="text-sm font-semibold">Fikri AI</p>
                   <p className="text-[11px] text-zinc-500">Portfolio Assistant</p>
                 </div>
               </div>
@@ -127,11 +127,9 @@ export function AIChat({ isOpen, onClose, lang, accent }: AIChatProps) {
                     <div className={`mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border ${accentStyle}`}>
                       <Bot size={28} />
                     </div>
-                    <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">{lang === 'id' ? 'Ada yang ingin kamu tahu?' : 'What would you like to know?'}</h1>
+                    <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">{lang === 'id' ? 'Mau tahu tentang Fikri?' : 'Want to know about Fikri?'}</h1>
                     <p className="mt-3 max-w-xl text-sm leading-6 text-zinc-500 sm:text-base">
-                      {lang === 'id'
-                        ? 'Tanya apa saja tentang Vann, project, skill, pengalaman, dan informasi yang tersedia di portfolio ini.'
-                        : 'Ask about Vann, his projects, skills, experience, and anything available in this portfolio.'}
+                      {lang === 'id' ? 'Tanya singkat tentang Fikri dan portfolio ini.' : 'Ask something about Fikri and this portfolio.'}
                     </p>
                     <div className="mt-8 flex max-w-2xl flex-wrap justify-center gap-2">
                       {quickPrompts[lang].map((prompt) => (
@@ -170,12 +168,12 @@ export function AIChat({ isOpen, onClose, lang, accent }: AIChatProps) {
 
             <footer className="shrink-0 border-t border-white/10 bg-[#0b0c10]/95 px-4 py-4 backdrop-blur-xl sm:px-8">
               <form onSubmit={(event) => { event.preventDefault(); void sendMessage(); }} className="mx-auto flex max-w-4xl items-end gap-2 rounded-2xl border border-white/10 bg-white/[0.035] p-2 focus-within:border-white/20">
-                <textarea value={input} onChange={(event) => setInput(event.target.value)} onKeyDown={handleKeyDown} rows={1} placeholder={lang === 'id' ? 'Tanya tentang portfolio ini…' : 'Ask about this portfolio…'} className="max-h-32 min-h-10 flex-1 resize-none bg-transparent px-3 py-2 text-sm text-zinc-200 outline-none placeholder:text-zinc-600" />
+                <textarea value={input} onChange={(event) => setInput(event.target.value)} onKeyDown={handleKeyDown} rows={1} placeholder={lang === 'id' ? 'Tanya tentang Fikri…' : 'Ask about Fikri…'} className="max-h-32 min-h-10 flex-1 resize-none bg-transparent px-3 py-2 text-sm text-zinc-200 outline-none placeholder:text-zinc-600" />
                 <button type="submit" disabled={!input.trim() || loading} aria-label="Send" className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border transition disabled:cursor-not-allowed disabled:opacity-30 ${accentStyle}`}>
                   <ArrowUp size={17} />
                 </button>
               </form>
-              <p className="mt-2 text-center text-[10px] text-zinc-600">{lang === 'id' ? 'AI dapat membuat kesalahan. Informasi utama tetap mengacu pada portfolio.' : 'AI can make mistakes. Core information is based on the portfolio.'}</p>
+              <p className="mt-2 text-center text-[10px] text-zinc-600">{lang === 'id' ? 'Jawaban AI dibuat berdasarkan informasi portfolio.' : 'AI answers are based on portfolio information.'}</p>
             </footer>
           </motion.div>
         </motion.div>
