@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowLeft, ArrowUp, Loader2, User } from 'lucide-react';
+import { ArrowLeft, ArrowUp, Bot, Loader2, User } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { Language, ColorMode } from '../types';
 
@@ -49,11 +49,11 @@ export function AIChat({ isOpen, onClose, lang, colorMode = 'dark' }: AIChatProp
   const theme = light ? {
     background: '#f5f6f8', text: '#18181b', muted: '#71717a', border: '#e4e4e7',
     input: '#ffffff', userBubble: '#18181b', userText: '#ffffff', assistantBubble: '#ffffff', assistantText: '#3f3f46',
-    button: '#18181b', buttonText: '#ffffff', prompt: '#ffffff', promptText: '#52525b'
+    button: '#18181b', buttonText: '#ffffff', prompt: '#ffffff', promptText: '#52525b', iconBg: '#ffffff', iconText: '#3f3f46'
   } : {
     background: '#0b0c10', text: '#f4f4f5', muted: '#71717a', border: 'rgba(255,255,255,.1)',
     input: 'rgba(255,255,255,.035)', userBubble: '#ffffff', userText: '#18181b', assistantBubble: 'rgba(255,255,255,.035)', assistantText: '#d4d4d8',
-    button: '#ffffff', buttonText: '#18181b', prompt: 'rgba(255,255,255,.03)', promptText: '#a1a1aa'
+    button: '#ffffff', buttonText: '#18181b', prompt: 'rgba(255,255,255,.03)', promptText: '#a1a1aa', iconBg: '#f4f4f5', iconText: '#3f3f46'
   };
 
   return (
@@ -68,6 +68,7 @@ export function AIChat({ isOpen, onClose, lang, colorMode = 'dark' }: AIChatProp
           <main className="min-h-0 flex-1 overflow-y-auto">
             <div className="mx-auto flex min-h-full w-full max-w-4xl flex-col px-4 py-8 sm:px-8 sm:py-12">
               {messages.length === 0 ? <div className="flex flex-1 flex-col items-center justify-center text-center">
+                <div style={{ backgroundColor: theme.iconBg, color: theme.iconText, borderColor: theme.border }} className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl border"><Bot size={28} strokeWidth={2.2} /></div>
                 <h1 style={{ color: theme.text }} className="text-3xl font-semibold tracking-tight sm:text-4xl">{lang === 'id' ? 'Mau tahu tentang Fikri?' : 'Want to know about Fikri?'}</h1>
                 <p style={{ color: theme.muted }} className="mt-3 max-w-xl text-sm leading-6 sm:text-base">{lang === 'id' ? 'Tanya singkat tentang Fikri dan portfolio ini.' : 'Ask something about Fikri and this portfolio.'}</p>
                 <div className="mt-8 flex max-w-2xl flex-wrap justify-center gap-2">{quickPrompts[lang].map((prompt) => <button key={prompt} onClick={() => void sendMessage(prompt)} style={{ backgroundColor: theme.prompt, borderColor: theme.border, color: theme.promptText }} className="rounded-full border px-4 py-2 text-xs transition hover:opacity-75">{prompt}</button>)}</div>
@@ -83,9 +84,9 @@ export function AIChat({ isOpen, onClose, lang, colorMode = 'dark' }: AIChatProp
           </main>
 
           <footer style={{ backgroundColor: theme.background, borderColor: theme.border }} className="shrink-0 border-t px-4 py-4 sm:px-8">
-            <form style={{ backgroundColor: theme.input, borderColor: theme.border }} className="mx-auto flex max-w-4xl items-end gap-2 rounded-2xl border p-2">
+            <form onSubmit={(event) => { event.preventDefault(); void sendMessage(); }} style={{ backgroundColor: theme.input, borderColor: theme.border }} className="mx-auto flex max-w-4xl items-end gap-2 rounded-2xl border p-2">
               <textarea value={input} onChange={(event) => setInput(event.target.value)} onKeyDown={handleKeyDown} rows={1} placeholder={lang === 'id' ? 'Tanya tentang Fikri…' : 'Ask about Fikri…'} style={{ color: theme.text }} className="max-h-32 min-h-10 flex-1 resize-none bg-transparent px-3 py-2 text-sm outline-none placeholder:text-zinc-500" />
-              <button type="submit" disabled={!input.trim() || loading} aria-label="Send" onClick={(event) => { event.preventDefault(); void sendMessage(); }} style={{ backgroundColor: theme.button, color: theme.buttonText, borderColor: theme.border }} className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border transition hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-30"><ArrowUp size={17} /></button>
+              <button type="submit" disabled={!input.trim() || loading} aria-label="Send" style={{ backgroundColor: theme.button, color: theme.buttonText, borderColor: theme.border }} className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border transition hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-30"><ArrowUp size={17} /></button>
             </form>
             <p style={{ color: theme.muted }} className="mt-2 text-center text-[10px]">{lang === 'id' ? 'Jawaban AI dibuat berdasarkan informasi portfolio.' : 'AI answers are based on portfolio information.'}</p>
           </footer>
