@@ -64,8 +64,8 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang, colorMode, setCol
               <div className="space-y-1">
                 {menuItems.map(({ id: target, label, icon: Icon }) => <button key={target} type="button" onClick={() => goTo(target)} className="nav-item w-full flex items-center gap-2.5 px-3 py-2.5 text-xs font-medium rounded-xl transition-colors text-left cursor-pointer"><Icon className="w-4 h-4 text-zinc-400" /><span>{label}</span></button>)}
                 <div className="nav-divider h-px my-1" />
-                <button type="button" onClick={onOpenAi} className="nav-item w-full flex items-center gap-2.5 px-3 py-2.5 text-xs font-medium rounded-xl transition-colors text-left cursor-pointer"><Sparkles className="w-4 h-4 text-zinc-400" /><span>{id ? 'Fikri AI' : 'Fikri AI'}</span></button>
-                <button type="button" onClick={toggleLanguage} className="nav-item w-full flex items-center justify-between gap-2.5 px-3 py-2.5 text-xs font-medium rounded-xl transition-colors text-left cursor-pointer"><div className="flex items-center gap-2.5"><Languages className="w-4 h-4 text-zinc-400" /><span>{id ? 'Bahasa Indonesia' : 'English'}</span></div><span className="text-[10px] text-zinc-500 font-mono">→ {id ? 'EN' : 'ID'}</span></button>
+                <button type="button" onClick={onOpenAi} className="nav-item w-full flex items-center gap-2.5 px-3 py-2.5 text-xs font-medium rounded-xl transition-colors text-left cursor-pointer"><Sparkles className="w-4 h-4 text-zinc-400" /><span>{id ? 'Chat AI' : 'Chat AI'}</span></button>
+                <button type="button" onClick={toggleLanguage} className="nav-item w-full flex items-center justify-between gap-2.5 px-3 py-2.5 text-xs font-medium rounded-xl transition-colors text-left cursor-pointer"><div className="flex items-center gap-2.5"><Languages className="w-4 h-4 text-zinc-400" /><span>{id ? 'Indonesia' : 'English'}</span></div><span className="text-[10px] text-zinc-500 font-mono">→ {id ? 'EN' : 'ID'}</span></button>
               </div>
             </motion.div>}
           </AnimatePresence>
