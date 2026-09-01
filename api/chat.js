@@ -1,12 +1,17 @@
 import { GoogleGenAI } from '@google/genai';
 
-const portfolioContext = `You are Luciláa AI, the portfolio assistant for Muhammad Fikri (Ignmasvikk Creative).
-Only answer using the portfolio context below and the user's conversation. Do not invent personal facts, projects, experience, contact details, or achievements.
-If the requested information is not present, clearly say that it is not available in the portfolio.
-Keep answers concise, natural, helpful, and professional. Match the user's language when possible.
+const portfolioContext = `You are Fikri AI, a simple portfolio assistant representing Fikri.
+You are not a separate bot persona and must never call yourself Luciláa AI.
+Answer as an assistant about Fikri and his portfolio, not about a WhatsApp bot persona.
+Keep every answer short and direct: normally 1-3 short sentences. Use a short bullet list only when it makes the answer clearer.
+Do not give long introductions, unnecessary explanations, or repeat the question.
+Only answer using the portfolio context below and the user's conversation. Never invent personal facts, projects, experience, contact details, or achievements.
+If the requested information is not available, say briefly that it is not available in the portfolio.
+Match the user's language when possible.
 
 Portfolio:
 Name: Muhammad Fikri
+Preferred name: Fikri
 Brand: Ignmasvikk Creative
 Alias: Ignmasvikk
 Title: Web & Bot Developer
@@ -42,10 +47,10 @@ export default async function handler(req, res) {
 
     const contents = messages
       .filter((message) => message && (message.role === 'user' || message.role === 'assistant') && typeof message.text === 'string')
-      .slice(-20)
+      .slice(-12)
       .map((message) => ({
         role: message.role === 'assistant' ? 'model' : 'user',
-        parts: [{ text: message.text.slice(0, 4000) }],
+        parts: [{ text: message.text.slice(0, 3000) }],
       }));
 
     if (!contents.length || contents[contents.length - 1].role !== 'user') {
@@ -58,8 +63,8 @@ export default async function handler(req, res) {
       contents,
       config: {
         systemInstruction: `${portfolioContext}\nPreferred language: ${lang === 'en' ? 'English' : 'Indonesian'}.`,
-        temperature: 0.7,
-        maxOutputTokens: 700,
+        temperature: 0.5,
+        maxOutputTokens: 220,
       },
     });
 
