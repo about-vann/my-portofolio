@@ -1,19 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { MoreHorizontal, UserRound, LayoutGrid, MessageCircle, Newspaper, Home, Languages } from 'lucide-react';
+import { MoreHorizontal, UserRound, LayoutGrid, MessageCircle, Newspaper, Home, Languages, Sparkles } from 'lucide-react';
 import { ThemeAccent, Language, ColorMode } from '../types';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
-interface NavbarProps { accent: ThemeAccent; setAccent: (accent: ThemeAccent) => void; lang: Language; setLang: (lang: Language) => void; colorMode: ColorMode; setColorMode: (mode: ColorMode) => void; onDownloadCv?: () => void; }
+interface NavbarProps { accent: ThemeAccent; setAccent: (accent: ThemeAccent) => void; lang: Language; setLang: (lang: Language) => void; colorMode: ColorMode; setColorMode: (mode: ColorMode) => void; onDownloadCv?: () => void; onOpenAi?: () => void; }
 
-export const Navbar: React.FC<NavbarProps> = ({ lang, setLang, colorMode, setColorMode }) => {
+export const Navbar: React.FC<NavbarProps> = ({ lang, setLang, colorMode, setColorMode, onOpenAi }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const isDark = colorMode === 'dark';
   const id = lang === 'id';
 
-  // Keep the theme control local to the navbar and make sure the state setter
-  // is actually received from App. This fixes the desktop/mobile toggle.
   const toggleTheme = (event?: React.MouseEvent<HTMLButtonElement>) => {
     event?.stopPropagation();
     setColorMode(isDark ? 'light' : 'dark');
@@ -49,31 +47,29 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang, colorMode, setCol
         <div className="flex items-center gap-2.5 relative" ref={menuRef}>
           <nav className="hidden md:flex items-center gap-0.5 mr-1" aria-label={id ? 'Navigasi utama' : 'Main navigation'}>
             {menuItems.map(({ id: target, label }) => (
-              <button key={target} type="button" onClick={() => goTo(target)} className="nav-top-link px-2.5 py-1.5 rounded-lg text-[11px] font-medium text-zinc-400 hover:text-white hover:bg-white/5 light-muted light-hover-dark light-hover-bg transition-colors cursor-pointer">
-                {label}
-              </button>
+              <button key={target} type="button" onClick={() => goTo(target)} className="nav-top-link px-2.5 py-1.5 rounded-lg text-[11px] font-medium text-zinc-400 hover:text-white hover:bg-white/5 light-muted light-hover-dark light-hover-bg transition-colors cursor-pointer">{label}</button>
             ))}
-            <button type="button" onClick={toggleLanguage} className="nav-top-link px-2.5 py-1.5 rounded-lg text-[11px] font-medium text-zinc-400 hover:text-white hover:bg-white/5 light-muted light-hover-dark light-hover-bg transition-colors cursor-pointer" aria-label={id ? 'Ganti bahasa' : 'Change language'}>
-              {id ? 'EN' : 'ID'}
-            </button>
+            <button type="button" onClick={toggleLanguage} className="nav-top-link px-2.5 py-1.5 rounded-lg text-[11px] font-medium text-zinc-400 hover:text-white hover:bg-white/5 light-muted light-hover-dark light-hover-bg transition-colors cursor-pointer">{id ? 'EN' : 'ID'}</button>
           </nav>
 
-          <button type="button" onClick={toggleTheme} className="relative z-10 flex items-center gap-2 text-xs font-medium text-zinc-300 light-muted hover:text-white light-hover-dark cursor-pointer select-none transition-colors touch-manipulation" aria-label={id ? 'Ganti tema terang dan gelap' : 'Toggle light and dark theme'}>
-            <span className="text-xs sm:text-sm font-normal pointer-events-none">{isDark ? (id ? 'Gelap' : 'Dark') : (id ? 'Terang' : 'Light')}</span>
-            <span className={`w-10 h-5 rounded-full p-0.5 transition-colors duration-200 ease-in-out relative flex items-center pointer-events-none ${isDark ? 'bg-zinc-700' : 'bg-zinc-300'}`}>
-              <span className={`w-4 h-4 rounded-full bg-white shadow-sm transition-transform duration-200 ease-in-out ${isDark ? 'translate-x-5' : 'translate-x-0'}`} />
-            </span>
+          <button type="button" onClick={onOpenAi} className="group inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1.5 text-[11px] font-medium text-zinc-300 transition hover:border-white/20 hover:bg-white/[0.07] hover:text-white" aria-label={id ? 'Buka Luciláa AI' : 'Open Luciláa AI'}>
+            <Sparkles size={13} className="text-cyan-400 transition-transform group-hover:rotate-12" />
+            <span className="hidden sm:inline">AI</span>
           </button>
 
-          <button type="button" onClick={() => setMenuOpen(!menuOpen)} className="md:hidden p-1.5 rounded-lg text-zinc-300 hover:text-white hover:bg-white/10 light-hover-bg transition-colors cursor-pointer" aria-label={id ? 'Buka navigasi website' : 'Open website navigation'}>
-            <MoreHorizontal className="w-5 h-5" />
+          <button type="button" onClick={toggleTheme} className="relative z-10 flex items-center gap-2 text-xs font-medium text-zinc-300 light-muted hover:text-white light-hover-dark cursor-pointer select-none transition-colors touch-manipulation">
+            <span className="text-xs sm:text-sm font-normal pointer-events-none">{isDark ? (id ? 'Gelap' : 'Dark') : (id ? 'Terang' : 'Light')}</span>
+            <span className={`w-10 h-5 rounded-full p-0.5 transition-colors duration-200 ease-in-out relative flex items-center pointer-events-none ${isDark ? 'bg-zinc-700' : 'bg-zinc-300'}`}><span className={`w-4 h-4 rounded-full bg-white shadow-sm transition-transform duration-200 ease-in-out ${isDark ? 'translate-x-5' : 'translate-x-0'}`} /></span>
           </button>
+
+          <button type="button" onClick={() => setMenuOpen(!menuOpen)} className="md:hidden p-1.5 rounded-lg text-zinc-300 hover:text-white hover:bg-white/10 light-hover-bg transition-colors cursor-pointer" aria-label={id ? 'Buka navigasi website' : 'Open website navigation'}><MoreHorizontal className="w-5 h-5" /></button>
 
           <AnimatePresence>
             {menuOpen && <motion.div initial={{ opacity: 0, scale: 0.95, y: 8 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 8 }} transition={{ duration: 0.15 }} className="nav-dropdown absolute right-0 top-11 w-56 rounded-2xl border shadow-2xl p-2 z-50 overflow-hidden md:hidden">
               <div className="space-y-1">
                 {menuItems.map(({ id: target, label, icon: Icon }) => <button key={target} type="button" onClick={() => goTo(target)} className="nav-item w-full flex items-center gap-2.5 px-3 py-2.5 text-xs font-medium rounded-xl transition-colors text-left cursor-pointer"><Icon className="w-4 h-4 text-zinc-400" /><span>{label}</span></button>)}
                 <div className="nav-divider h-px my-1" />
+                <button type="button" onClick={onOpenAi} className="nav-item w-full flex items-center gap-2.5 px-3 py-2.5 text-xs font-medium rounded-xl transition-colors text-left cursor-pointer"><Sparkles className="w-4 h-4 text-cyan-400" /><span>{id ? 'Luciláa AI' : 'Luciláa AI'}</span></button>
                 <button type="button" onClick={toggleLanguage} className="nav-item w-full flex items-center justify-between gap-2.5 px-3 py-2.5 text-xs font-medium rounded-xl transition-colors text-left cursor-pointer"><div className="flex items-center gap-2.5"><Languages className="w-4 h-4 text-cyan-400" /><span>{id ? 'Bahasa Indonesia' : 'English'}</span></div><span className="text-[10px] text-zinc-500 font-mono">→ {id ? 'EN' : 'ID'}</span></button>
               </div>
             </motion.div>}
