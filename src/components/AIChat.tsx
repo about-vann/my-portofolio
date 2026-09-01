@@ -86,7 +86,7 @@ export function AIChat({ isOpen, onClose, lang, colorMode = 'dark' }: AIChatProp
 
           <footer style={{ backgroundColor: theme.background, borderColor: theme.border }} className="shrink-0 border-t px-4 py-4 sm:px-8">
             <form onSubmit={(event) => { event.preventDefault(); void sendMessage(); }} style={{ backgroundColor: theme.input, borderColor: theme.border }} className="mx-auto flex max-w-4xl items-end gap-2 rounded-2xl border p-2">
-              <textarea value={input} onChange={(event) => setInput(event.target.value)} onKeyDown={handleKeyDown} rows={1} placeholder={lang === 'id' ? 'Tanya tentang Fikri…' : 'Ask about Fikri…'} style={{ color: theme.text }} className="max-h-32 min-h-10 flex-1 resize-none bg-transparent px-3 py-2 text-sm outline-none placeholder:text-zinc-500" />
+              <textarea value={input} onChange={(event) => setInput(event.target.value)} onKeyDown={handleKeyDown} rows={1} placeholder={lang === 'id' ? 'Tanya dengan AI...' : 'Ask with AI...} style={{ color: theme.text }} className="max-h-32 min-h-10 flex-1 resize-none bg-transparent px-3 py-2 text-sm outline-none placeholder:text-zinc-500" />
               <button type="submit" disabled={!input.trim() || loading} aria-label="Send" style={{ backgroundColor: theme.button, color: theme.buttonText, borderColor: theme.border }} className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border transition hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-30"><ArrowUp size={17} /></button>
             </form>
             <p style={{ color: theme.muted }} className="mt-2 text-center text-[10px]">{lang === 'id' ? '© Powered By Ignmasvikk' : '© Powered By Ignmasvikk'}</p>
