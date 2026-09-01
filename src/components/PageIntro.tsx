@@ -38,7 +38,7 @@ export const PageIntro: React.FC<PageIntroProps> = ({ onComplete }) => {
     ring: isLight ? 'rgba(24,24,27,.10)' : 'rgba(255,255,255,.06)',
     ringSecondary: isLight ? 'rgba(24,24,27,.06)' : 'rgba(255,255,255,.04)',
     line: isLight ? 'rgba(24,24,27,.35)' : 'rgba(255,255,255,.50)',
-    muted: isLight ? '#71717a' : '#71717a',
+    muted: isLight ? '#52525b' : '#a1a1aa',
   };
 
   return (
@@ -90,7 +90,7 @@ export const PageIntro: React.FC<PageIntroProps> = ({ onComplete }) => {
               transition={{ delay: 0.72, duration: 0.45, ease: 'easeOut' }}
             />
             <motion.span
-              className="mt-3 text-[9px] font-mono uppercase tracking-[0.35em]"
+              className="mt-3 text-[10px] font-mono font-semibold uppercase tracking-[0.35em]"
               style={{ color: intro.muted }}
               initial={{ opacity: 0, y: 5 }}
               animate={{ opacity: 1, y: 0 }}
