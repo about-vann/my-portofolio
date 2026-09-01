@@ -1,7 +1,5 @@
 import { GoogleGenAI } from '@google/genai';
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-
 const portfolioContext = `You are Luciláa AI, the portfolio assistant for Muhammad Fikri (Ignmasvikk Creative).
 Only answer using the portfolio context below and the user's conversation. Do not invent personal facts, projects, experience, contact details, or achievements.
 If the requested information is not present, clearly say that it is not available in the portfolio.
@@ -25,15 +23,19 @@ The portfolio's project and profile details are the source of truth. If a detail
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
+    res.setHeader('Allow', 'POST');
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  if (!process.env.GEMINI_API_KEY) {
-    return res.status(500).json({ error: 'Gemini API key is not configured.' });
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    return res.status(500).json({ error: 'GEMINI_API_KEY is missing. Add it to Vercel Environment Variables and redeploy.' });
   }
 
   try {
-    const { messages, lang = 'id' } = req.body || {};
+    const body = typeof req.body === 'string' ? JSON.parse(req.body) : (req.body || {});
+    const { messages, lang = 'id' } = body;
+
     if (!Array.isArray(messages) || messages.length === 0) {
       return res.status(400).json({ error: 'Messages are required.' });
     }
@@ -46,8 +48,13 @@ export default async function handler(req, res) {
         parts: [{ text: message.text.slice(0, 4000) }],
       }));
 
+    if (!contents.length || contents[contents.length - 1].role !== 'user') {
+      return res.status(400).json({ error: 'A user message is required.' });
+    }
+
+    const ai = new GoogleGenAI({ apiKey });
     const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
+      model: process.env.GEMINI_MODEL || 'gemini-2.5-flash',
       contents,
       config: {
         systemInstruction: `${portfolioContext}\nPreferred language: ${lang === 'en' ? 'English' : 'Indonesian'}.`,
@@ -56,9 +63,15 @@ export default async function handler(req, res) {
       },
     });
 
-    return res.status(200).json({ text: response.text || 'No response generated.' });
+    const text = response?.text?.trim();
+    if (!text) {
+      return res.status(502).json({ error: 'Gemini returned an empty response.' });
+    }
+
+    return res.status(200).json({ text });
   } catch (error) {
     console.error('Gemini API error:', error);
-    return res.status(500).json({ error: 'Unable to generate an AI response.' });
+    const message = error instanceof Error ? error.message : String(error);
+    return res.status(500).json({ error: `Gemini request failed: ${message.slice(0, 300)}` });
   }
 }
