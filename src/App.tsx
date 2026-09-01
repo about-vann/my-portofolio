@@ -7,6 +7,7 @@ import { ProjectsSection } from './components/ProjectsSection';
 import { ContactSection } from './components/ContactSection';
 import { ArticlesSection } from './components/ArticlesSection';
 import { CvModal } from './components/CvModal';
+import { AIChat } from './components/AIChat';
 import { PERSONAL_INFO } from './data/portfolioData';
 
 export default function App() {
@@ -26,6 +27,7 @@ export default function App() {
     return 'dark';
   });
   const [isCvOpen, setIsCvOpen] = useState(false);
+  const [isAiOpen, setIsAiOpen] = useState(false);
 
   useEffect(() => { localStorage.setItem('portfolio_theme_accent', accent); }, [accent]);
   useEffect(() => { localStorage.setItem('portfolio_lang', lang); }, [lang]);
@@ -40,22 +42,8 @@ export default function App() {
 
   return (
     <div className={`min-h-screen ${isLight ? 'bg-[#f0f2f5] text-zinc-900' : 'bg-[#0e0f14] text-zinc-100'} font-['Poppins',sans-serif] selection:bg-black/10 selection:text-zinc-900 transition-colors duration-300 antialiased`}>
-      <Navbar
-        accent={accent}
-        setAccent={setAccent}
-        lang={lang}
-        setLang={setLang}
-        colorMode={colorMode}
-        setColorMode={setColorMode}
-        onDownloadCv={() => setIsCvOpen(true)}
-      />
+      <Navbar accent={accent} setAccent={setAccent} lang={lang} setLang={setLang} colorMode={colorMode} setColorMode={setColorMode} onDownloadCv={() => setIsCvOpen(true)} onOpenAi={() => setIsAiOpen(true)} />
 
-      {/*
-        Mobile keeps the original single-column feed.
-        Desktop intentionally switches to a dashboard-style composition:
-        profile/contact stay in a left rail while the content sections occupy
-        a wider reading column. This is a structural responsive change, not scaling.
-      */}
       <main className="portfolio-main mx-auto w-full px-4 pb-12 sm:px-5 lg:max-w-7xl lg:px-8 xl:px-10">
         <div className="portfolio-mobile space-y-4 lg:hidden">
           <HeroSection accent={accent} lang={lang} onDownloadCv={() => setIsCvOpen(true)} />
@@ -70,7 +58,6 @@ export default function App() {
             <HeroSection accent={accent} lang={lang} onDownloadCv={() => setIsCvOpen(true)} />
             <ContactSection accent={accent} lang={lang} />
           </aside>
-
           <div className="portfolio-content min-w-0 space-y-6">
             <AboutSection accent={accent} lang={lang} />
             <ProjectsSection accent={accent} lang={lang} />
@@ -84,6 +71,7 @@ export default function App() {
       </main>
 
       <CvModal isOpen={isCvOpen} onClose={() => setIsCvOpen(false)} lang={lang} accent={accent} />
+      <AIChat isOpen={isAiOpen} onClose={() => setIsAiOpen(false)} lang={lang} accent={accent} />
     </div>
   );
 }
