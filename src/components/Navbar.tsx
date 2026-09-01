@@ -52,11 +52,6 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang, colorMode, setCol
             <button type="button" onClick={toggleLanguage} className="nav-top-link px-2.5 py-1.5 rounded-lg text-[11px] font-medium text-zinc-400 hover:text-white hover:bg-white/5 light-muted light-hover-dark light-hover-bg transition-colors cursor-pointer">{id ? 'EN' : 'ID'}</button>
           </nav>
 
-          <button type="button" onClick={onOpenAi} className="group inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.03] px-2.5 py-1.5 text-[11px] font-medium text-zinc-300 transition hover:border-white/20 hover:bg-white/[0.07] hover:text-white" aria-label={id ? 'Buka Luciláa AI' : 'Open Luciláa AI'}>
-            <Sparkles size={13} className="text-cyan-400 transition-transform group-hover:rotate-12" />
-            <span className="hidden sm:inline">AI</span>
-          </button>
-
           <button type="button" onClick={toggleTheme} className="relative z-10 flex items-center gap-2 text-xs font-medium text-zinc-300 light-muted hover:text-white light-hover-dark cursor-pointer select-none transition-colors touch-manipulation">
             <span className="text-xs sm:text-sm font-normal pointer-events-none">{isDark ? (id ? 'Gelap' : 'Dark') : (id ? 'Terang' : 'Light')}</span>
             <span className={`w-10 h-5 rounded-full p-0.5 transition-colors duration-200 ease-in-out relative flex items-center pointer-events-none ${isDark ? 'bg-zinc-700' : 'bg-zinc-300'}`}><span className={`w-4 h-4 rounded-full bg-white shadow-sm transition-transform duration-200 ease-in-out ${isDark ? 'translate-x-5' : 'translate-x-0'}`} /></span>
@@ -69,8 +64,8 @@ export const Navbar: React.FC<NavbarProps> = ({ lang, setLang, colorMode, setCol
               <div className="space-y-1">
                 {menuItems.map(({ id: target, label, icon: Icon }) => <button key={target} type="button" onClick={() => goTo(target)} className="nav-item w-full flex items-center gap-2.5 px-3 py-2.5 text-xs font-medium rounded-xl transition-colors text-left cursor-pointer"><Icon className="w-4 h-4 text-zinc-400" /><span>{label}</span></button>)}
                 <div className="nav-divider h-px my-1" />
-                <button type="button" onClick={onOpenAi} className="nav-item w-full flex items-center gap-2.5 px-3 py-2.5 text-xs font-medium rounded-xl transition-colors text-left cursor-pointer"><Sparkles className="w-4 h-4 text-cyan-400" /><span>{id ? 'Luciláa AI' : 'Luciláa AI'}</span></button>
-                <button type="button" onClick={toggleLanguage} className="nav-item w-full flex items-center justify-between gap-2.5 px-3 py-2.5 text-xs font-medium rounded-xl transition-colors text-left cursor-pointer"><div className="flex items-center gap-2.5"><Languages className="w-4 h-4 text-cyan-400" /><span>{id ? 'Bahasa Indonesia' : 'English'}</span></div><span className="text-[10px] text-zinc-500 font-mono">→ {id ? 'EN' : 'ID'}</span></button>
+                <button type="button" onClick={onOpenAi} className="nav-item w-full flex items-center gap-2.5 px-3 py-2.5 text-xs font-medium rounded-xl transition-colors text-left cursor-pointer"><Sparkles className="w-4 h-4 text-zinc-400" /><span>{id ? 'Fikri AI' : 'Fikri AI'}</span></button>
+                <button type="button" onClick={toggleLanguage} className="nav-item w-full flex items-center justify-between gap-2.5 px-3 py-2.5 text-xs font-medium rounded-xl transition-colors text-left cursor-pointer"><div className="flex items-center gap-2.5"><Languages className="w-4 h-4 text-zinc-400" /><span>{id ? 'Bahasa Indonesia' : 'English'}</span></div><span className="text-[10px] text-zinc-500 font-mono">→ {id ? 'EN' : 'ID'}</span></button>
               </div>
             </motion.div>}
           </AnimatePresence>
