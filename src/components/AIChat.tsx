@@ -74,10 +74,11 @@ export function AIChat({ isOpen, onClose, lang, colorMode = 'dark' }: AIChatProp
                 <div className="mt-8 flex max-w-2xl flex-wrap justify-center gap-2">{quickPrompts[lang].map((prompt) => <button key={prompt} onClick={() => void sendMessage(prompt)} style={{ backgroundColor: theme.prompt, borderColor: theme.border, color: theme.promptText }} className="rounded-full border px-4 py-2 text-xs transition hover:opacity-75">{prompt}</button>)}</div>
               </div> : <div className="space-y-6 pb-8">
                 {messages.map((message, index) => <motion.div key={`${message.role}-${index}`} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                  {message.role === 'assistant' && <div style={{ backgroundColor: theme.iconBg, color: theme.iconText, borderColor: theme.border }} className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border"><Bot size={15} strokeWidth={2.2} /></div>}
                   <div style={{ backgroundColor: message.role === 'user' ? theme.userBubble : theme.assistantBubble, color: message.role === 'user' ? theme.userText : theme.assistantText, borderColor: theme.border }} className="max-w-[85%] whitespace-pre-wrap rounded-2xl border px-4 py-3 text-sm leading-6">{message.text}</div>
                   {message.role === 'user' && <div style={{ backgroundColor: theme.input, color: theme.muted, borderColor: theme.border }} className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border"><User size={15} /></div>}
                 </motion.div>)}
-                {loading && <div style={{ color: theme.muted }} className="flex items-center gap-2 text-sm"><Loader2 size={15} className="animate-spin" />{lang === 'id' ? 'Sedang berpikir…' : 'Thinking…'}</div>}
+                {loading && <div style={{ color: theme.muted }} className="flex items-center gap-2 text-sm"><div style={{ backgroundColor: theme.iconBg, color: theme.iconText, borderColor: theme.border }} className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border"><Bot size={15} strokeWidth={2.2} /></div><span className="flex items-center gap-2"><Loader2 size={15} className="animate-spin" />{lang === 'id' ? 'Sedang berpikir…' : 'Thinking…'}</span></div>}
                 <div ref={endRef} />
               </div>}
             </div>
